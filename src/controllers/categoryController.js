@@ -27,6 +27,27 @@ const getRootCategories = async (req, res, next) => {
     }
 };
 
-const getParentCategories = async (req, res, next) => {};
+//-----------Get Parent Categories-------------
+const getParentCategories = async (req, res, next) => {
+    const rootCategory = req.params.category;
+    const parentCategoryId = req.params.parentCategoryId;
+
+    try {
+        const roots = await getCategoriesByParentId('root');
+        const parentData = await getCategoriesByParentId(parentCategoryId);
+        if (!parentData) throw new BadRequestError('Category Not Found.');
+        checkImageExist(parentData);
+        const parentNames = findParentName(parentCategoryId);
+
+        return res.render('parentCategory', {
+            roots,
+            rootCategory,
+            parentData,
+            parentNames,
+        });
+    } catch (error) {
+        next(error);
+    }
+};
 
 module.exports = { getRootCategories, getParentCategories };
