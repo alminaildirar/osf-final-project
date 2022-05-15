@@ -18,6 +18,9 @@ app.get('/favicon.ico', (req, res) => res.status(204));
 //----------Routes---------------
 require("./routes/server")(app);
 
+//---------Error Handler Middleware-----
+app.use(errorHandler);
+
 app.listen(config.app.port, () =>
     console.log(`Server running on PORT ${config.app.port}`)
 );
