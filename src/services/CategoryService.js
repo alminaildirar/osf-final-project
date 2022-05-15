@@ -14,4 +14,10 @@ const getCategoriesByParentId = async (parentCategoryId) => {
     );
 };
 
-module.exports = { getCategoryById, getCategoriesByParentId };
+const getAllCategories = async () => {
+    return await getData(
+        `${config.api.url}categories?secretKey=${config.api.key}`
+    );
+};
+
+module.exports = { getCategoryById, getCategoriesByParentId, getAllCategories };
