@@ -8,4 +8,10 @@ const getCategoryById = async (rootCategoryId) => {
     );
 };
 
-module.exports = { getCategoryById };
+const getCategoriesByParentId = async (parentCategoryId) => {
+    return await getData(
+        `${config.api.url}categories/parent/${parentCategoryId}?secretKey=${config.api.key}`
+    );
+};
+
+module.exports = { getCategoryById, getCategoriesByParentId };
