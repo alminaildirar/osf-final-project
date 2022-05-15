@@ -1,0 +1,26 @@
+<%- include('partials/_header')-%>
+
+  <div class="breadcrumb container">
+    <a href="/" class="breadcrumb-item">Home</a>
+    <a href="" class="breadcrumb-item"><%= rootData.name %></a>
+  </div>
+  <div class="page-title">
+    <div class="container">
+      <h1><%= rootData.name %></h1>
+      <p><%= rootData.page_description %></p>
+    </div>
+  </div>
+  <div class="container cat-list">
+    <% for(let i=0; i<parentData.length; i++) { %>
+    <div class="cat-card">
+      <h3><%= parentData[i].name %></h3>
+      <div class="card-img">
+        <img src="/images/<%= parentData[i].image %>" alt="">
+      </div>
+      <p><%= parentData[i].page_description %></p>
+      <a href="/categories/<%= parentData[i].parent_category_id %>/<%= parentData[i].id %>" class="btn-card">View Categories <i class="fas fa-angle-double-right arrow"></i></a>
+    </div>
+    <% } %>
+
+  </div>
+  <%- include('partials/_footer')-%>
