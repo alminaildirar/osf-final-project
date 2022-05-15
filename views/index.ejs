@@ -1,0 +1,9 @@
+<%- include('partials/_header')-%>
+  <div class="breadcrumb container">
+    <a href="" class="breadcrumb-item">Home</a>
+  </div>
+  <% if(typeof error !== 'undefined'){ %>
+    <br>
+    <h2 style="text-align:center;"><%= error %></h3>
+  <% } %>
+<%- include('partials/_footer')-%>
