@@ -16,7 +16,7 @@ app.use(express.static('public'));
 app.get('/favicon.ico', (req, res) => res.status(204));
 
 //----------Routes---------------
-require("./routes/server")(app);
+require('./routes/server')(app);
 
 //---------Error Handler Middleware-----
 app.use(errorHandler);
