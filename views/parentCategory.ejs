@@ -1,0 +1,29 @@
+<%- include('partials/_header')-%>
+
+  <div class="breadcrumb container">
+    <a href="/" class="breadcrumb-item">Home</a>
+    <a href="/categories/<%= rootCategory %>" class="breadcrumb-item"><%= rootCategory %></a>
+    <% if(parentData.length > 0) { %>
+    <a href="" class="breadcrumb-item"><%= parentNames.parent %></a>
+    <% } %>
+  </div>
+  <% if(parentData.length > 0) { %>
+
+  <div class="container cat-list">
+    <% for(let i=0; i<parentData.length; i++) { %>
+    <div class="cat-card">
+      <h3><%= parentData[i].name %></h3>
+      <div class="card-img">
+        <img src="/images/<%= parentData[i].image %>" alt="">
+      </div>
+      <p><%= parentData[i].page_description %></p>
+      <a href="/products/<%= parentData[i].id %>" class="btn-card">View Products <i class="fas fa-angle-double-right arrow"></i></a>
+    </div>
+    <% } %>
+
+  </div>
+  <% }else { %>
+<h3>There are no products in this category.</h3>
+    <% } %>
+
+  <%- include('partials/_footer')-%>
