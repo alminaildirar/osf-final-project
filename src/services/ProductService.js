@@ -1,5 +1,6 @@
 const getData = require('./DataService');
 const config = require('../config');
+const { getAllCategories } = require('./CategoryService');
 
 const getProductsByCategoryId = async (primaryCategoryId) => {
     return await getData(

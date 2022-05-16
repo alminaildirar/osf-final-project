@@ -1,6 +1,8 @@
 const { getCategoriesByParentId } = require('../services/CategoryService');
 const {
     getProductsByCategoryId,
+    getProductById,
+    getProductImages,
     findProductsParentCategory,
     checkProductHasSubCategory,
 } = require('../services/ProductService');
@@ -29,7 +31,7 @@ const getProducts = async (req, res, next) => {
         }
         return res.render('products', { roots, products, parentNames });
     } catch (error) {
-        next(error);
+        console.log(error)
     }
 };
 
@@ -63,7 +65,7 @@ const getSingleProduct = async (req, res, next) => {
             images,
         });
     } catch (error) {
-        next(error);
+        console.log(error)
     }
 };
 

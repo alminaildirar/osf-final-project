@@ -3,6 +3,7 @@ const {
     getCategoriesByParentId,
 } = require('../services/CategoryService');
 const { checkImageExist } = require('../helpers/checkImageExist');
+const { findParentName } = require('../helpers/findParentName');
 const BadRequestError = require('../exceptions/BadRequestError');
 
 //-----------Get Root Categories-------------
@@ -46,7 +47,7 @@ const getParentCategories = async (req, res, next) => {
             parentNames,
         });
     } catch (error) {
-        next(error);
+        console.log(error);
     }
 };
 
