@@ -7,6 +7,15 @@ const getProductsByCategoryId = async (primaryCategoryId) => {
     );
 };
 
+const getProductById = async (id) => {
+    return (
+        await getData(
+            `${config.api.url}products/product_search?id=${id}&secretKey=${config.api.key}`
+        )
+    )[0];
+};
+
 module.exports = {
     getProductsByCategoryId,
+    getProductById
 };
