@@ -15,18 +15,35 @@ const getProductById = async (id) => {
     )[0];
 };
 
-const getProductImages = (product) => {
-    return product.image_groups
-        .filter((data) => {
-            if (data.view_type == 'large') {
-                return true;
-            }
-        })[0]
-        .images.map((data) => data.link);
+const findProductsParentCategory = async (categoryId) => {
+    const category = (await getAllCategories()).filter((data) => {
+        if (data.id == categoryId) return true;
+    });
+
+    const result = category[0] ? category[0].parent_category_id : false;
+    return result;
+};
+
+const checkProductHasSubCategory = (
+    parentNames,
+    primaryCategoryId,
+    parentCategory
+) => {
+    if (!parentNames.sub) {
+        parentNames.sub = primaryCategoryId.substring(
+            primaryCategoryId.indexOf('-') + 1
+        );
+        parentNames.subName = parentNames.sub;
+        parentNames.parent = parentCategory.substring(
+            parentCategory.indexOf('-') + 1
+        );
+    }
+    return parentNames;
 };
 
 module.exports = {
     getProductsByCategoryId,
     getProductById,
-    getProductImages,
+    findProductsParentCategory,
+    checkProductHasSubCategory,
 };
