@@ -33,4 +33,38 @@ const getProducts = async (req, res, next) => {
     }
 };
 
-module.exports = { getProducts };
+const getSingleProduct = async (req, res, next) => {
+    const id = req.params.id;
+    const primaryCategoryId = req.params.primaryCategoryId;
+
+    try {
+        const roots = await getCategoriesByParentId('root');
+        const product = await getProductById(id);
+        const parentCategory = await findProductsParentCategory(
+            primaryCategoryId
+        );
+        let parentNames = findParentName(primaryCategoryId);
+        if (!parentNames.sub) {
+            parentNames = checkProductHasSubCategory(
+                parentNames,
+                primaryCategoryId,
+                parentCategory
+            );
+        }
+
+        const images = getProductImages(product);
+
+        return res.render('singleProduct', {
+            roots,
+            product,
+            parentCategory,
+            primaryCategoryId,
+            parentNames,
+            images,
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+module.exports = { getProducts, getSingleProduct };
