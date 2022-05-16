@@ -15,7 +15,18 @@ const getProductById = async (id) => {
     )[0];
 };
 
+const getProductImages = (product) => {
+    return product.image_groups
+        .filter((data) => {
+            if (data.view_type == 'large') {
+                return true;
+            }
+        })[0]
+        .images.map((data) => data.link);
+};
+
 module.exports = {
     getProductsByCategoryId,
-    getProductById
+    getProductById,
+    getProductImages,
 };
