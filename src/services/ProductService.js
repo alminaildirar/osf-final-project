@@ -41,9 +41,20 @@ const checkProductHasSubCategory = (
     return parentNames;
 };
 
+const getProductImages = (product) => {
+    return product.image_groups
+        .filter((data) => {
+            if (data.view_type == 'large') {
+                return true;
+            }
+        })[0]
+        .images.map((data) => data.link);
+};
+
 module.exports = {
     getProductsByCategoryId,
     getProductById,
     findProductsParentCategory,
     checkProductHasSubCategory,
+    getProductImages,
 };
