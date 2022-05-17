@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const config = require('./config');
+const cookieParser = require("cookie-parser");
 const { errorHandler } = require('./middleware/errorHandler')
 
 dotenv.config();
@@ -12,6 +13,16 @@ app.set('view engine', 'ejs');
 //----------Middleware-----------
 app.use(express.json());
 app.use(express.static('public'));
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: false }));
+
+//--Global Variable--
+global.userIN = null;
+
+app.use('*', (req, res, next) => {
+    userIN = req.cookies.user;
+    next();
+  });
 
 //---Prevent to receiving GET request to /favicon.ico
 app.get('/favicon.ico', (req, res) => res.status(204));
