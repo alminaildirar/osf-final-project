@@ -30,4 +30,31 @@ const register = async (req, res, next) => {
     }
 };
 
-module.exports = { register };
+const login = async (req, res, next) => {
+    const { email, password } = req.body;
+    try {
+        const data = {
+            secretKey: config.api.key,
+            email,
+            password,
+        };
+        const responseData = await loginRequest(data);
+        if (responseData.error) {
+            throw new LoginError(responseData.error);
+        } else {
+            res.cookie('token', responseData.token, {
+                httpOnly: true,
+                maxAge: 90000,
+            });
+            res.cookie('user', responseData.user.email, {
+                httpOnly: true,
+                maxAge: 90000,
+            });
+            res.redirect('/');
+        }
+    } catch (error) {
+        next(error);
+    }
+};
+
+module.exports = { register, login };

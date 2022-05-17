@@ -5,4 +5,8 @@ const registerRequest = async (data) => {
     return await authPost(`${config.api.url}auth/signup`, data);
 };
 
-module.exports = { registerRequest };
+const loginRequest = async (data) => {
+    return await authPost( `${config.api.url}auth/signin`, data)
+}
+
+module.exports = { registerRequest, loginRequest };
