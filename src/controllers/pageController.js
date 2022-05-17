@@ -20,12 +20,11 @@ const getLoginPage = async (req, res) => {
 
 const getRegisterPage = async (req, res) => {
     try {
-        //Note => Token check will be added to prevent the logged in user from going to the register page
+        if (userIN) return res.redirect('/');
         res.status(200).render('register');
     } catch (error) {
         next(error);
     }
 };
-
 
 module.exports = { getIndexPage, getLoginPage, getRegisterPage };

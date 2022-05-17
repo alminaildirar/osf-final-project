@@ -1,57 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/normalize.css">
-  <link rel="stylesheet" href="/css/style.css">
-  <title>Register</title>
-</head>
-<body>
-    <div class="header">
-        <nav class="container">
-          <div class="logo-section">
-            <div class="logo">
-              <a href="/">Alibazon</a>
-            </div>
-            <div class="header-btns">
-              <a class="toggle" href="javascript:void(0);"><img src="/images/bar.svg" alt="" /></a>
-            </div>
-          </div>
-        </nav>
-      </div>
-      <div class="enter-wrapper">
-        <div class="enter-box">
-          <div class="enter-formbox">
-              <form method="POST" action ="/auth/register">
-                <div>
-                  <label for="name"> Name</label>
-                  <input type="text" name="name" class="input-username" required/>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/css/normalize.css" />
+        <link rel="stylesheet" href="/css/style.css" />
+        <title>Register</title>
+    </head>
+    <body>
+        <div class="header">
+            <nav class="container">
+                <div class="logo-section">
+                    <div class="logo">
+                        <a href="/">Alibazon</a>
+                    </div>
+                    <div class="header-btns">
+                        <a class="toggle" href="javascript:void(0);"
+                            ><img src="/images/bar.svg" alt=""
+                        /></a>
+                    </div>
                 </div>
-                <div>
-                   <label for="email"> Email</label>
-                   <input type="text" name="email" class="input-email" required/>
-                  </div>
-                <div>
-                  <label for="password"> Password</label>
-                  <input type="password" name="password" class="input-password" required/>
-                </div>
-                <div>
-                  <input type="submit" value="Create an account" class="btn btn-enter" />
-                </div>
-              </form>
-              <div class="enter-switch">
-              <a href="/login">I am already member.</a>
-              </div>
-          </div>
-          <div class="enter-quotebox">
-            <div class="quote-container">
-              <div class="quote">THE BEST WAY TO SHOP</div>
-            </div>
-          </div>
+            </nav>
         </div>
-      </div>
-      <script src="/js/script.js"></script>
-</body>
+        <div class="enter-wrapper">
+            <div class="enter-box">
+                <div class="enter-formbox">
+                    <form method="POST" action="/auth/register">
+                        <div>
+                            <label for="name"> Name</label>
+                            <input
+                                type="text"
+                                name="name"
+                                class="input-username"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label for="email"> Email</label>
+                            <input
+                                type="email"
+                                name="email"
+                                class="input-email"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label for="password"> Password</label>
+                            <input
+                                type="password"
+                                name="password"
+                                class="input-password"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <input
+                                type="submit"
+                                value="Create an account"
+                                class="btn btn-enter"
+                            />
+                        </div>
+                    </form>
+                    <div class="enter-switch">
+                        <a href="/login">I am already member.</a>
+                    </div>
+                </div>
+                <div class="enter-quotebox">
+                    <div class="quote-container">
+                        <div class="quote">THE BEST WAY TO SHOP</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="/js/script.js"></script>
+    </body>
 </html>
