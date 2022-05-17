@@ -57,4 +57,17 @@ const login = async (req, res, next) => {
     }
 };
 
-module.exports = { register, login };
+const logout = (req, res) => {
+    try {
+        if (!req.cookies.user || !req.cookies.token) {
+            return res.redirect('/');
+        }
+        res.clearCookie('user');
+        res.clearCookie('token');
+        return res.redirect('/login');
+    } catch (error) {
+        next(error);
+    }
+};
+
+module.exports = { register, login, logout };

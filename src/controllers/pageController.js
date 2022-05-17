@@ -11,7 +11,7 @@ const getIndexPage = async (req, res) => {
 
 const getLoginPage = async (req, res) => {
     try {
-        //Note => Token check will be added to prevent the logged in user from going to the login page
+        if (userIN) return res.redirect('/');
         res.status(200).render('login');
     } catch (error) {
         next(error);
