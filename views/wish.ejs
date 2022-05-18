@@ -1,0 +1,40 @@
+<%- include('partials/_header')-%>
+  <div class="breadcrumb container">
+    <a href="/" class="breadcrumb-item">Home</a>
+    <a href="" class="breadcrumb-item">Wishlist</a>
+  </div>
+  <div class="cart-page container">
+    <h1>Wishlist</h1>
+    <div class="cart">
+      <ul class="product-list">
+        <% wishProducts.forEach((product) => { %>
+        <li>
+          <div class="product-img"><img src="/images/<%= product.image %>" alt=""></div>
+          <div class="product-detail">
+            <h4><%= product.name %></h4>
+            <hr>
+            <ul class="product-property">
+              <% let variant = Object.entries(product.variant) %>
+              <% variant.forEach((item) => { %>
+              <li><b style="text-transform: capitalize ;"><%= item[0] %></b>: <%= item[1] %></li>
+              <% }) %>
+
+              <li><b>Unit Price</b>: $<%= product.price %></li>
+              <li><b>Subtotal</b>: $<%= (product.price) * (product.quantity) %></li>
+            </ul>
+          </div>
+          <div class="product-act">
+            <a href="javascript:void(0)" onclick="" class="pbtn delete-btn"><i class="fas fa-times"></i></a>
+            <div class="quantity">
+              <label for="quantity">Quantity: </label><input type="number" name="" id="quantity" value="<%= product.quantity %>">
+            </div>
+            <a href="" class="pbtn update-btn">Update</a>
+            <a href="" class="btn-card btn-cart"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+          </div>
+        </li>
+        <% }) %>
+      </ul>
+    </div>
+  </div>
+  </div>
+  <%- include('partials/_footer')-%>

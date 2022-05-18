@@ -1,4 +1,4 @@
-const getData = require('./DataService');
+const { getData } = require('./DataService');
 const config = require('../config');
 const { getAllCategories } = require('./CategoryService');
 
