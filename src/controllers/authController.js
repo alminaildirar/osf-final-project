@@ -1,7 +1,7 @@
 const config = require('../config');
 const RegisterError = require('../exceptions/RegisterError');
 
-const { registerRequest } = require('../services/AuthService');
+const { registerRequest, loginRequest } = require('../services/AuthService');
 
 const register = async (req, res, next) => {
     const { name, password, email } = req.body;
@@ -44,15 +44,16 @@ const login = async (req, res, next) => {
         } else {
             res.cookie('token', responseData.token, {
                 httpOnly: true,
-                maxAge: 90000,
+                maxAge: 900000,
             });
             res.cookie('user', responseData.user.email, {
                 httpOnly: true,
-                maxAge: 90000,
+                maxAge: 900000,
             });
             res.redirect('/');
         }
     } catch (error) {
+        console.log(error)
         next(error);
     }
 };

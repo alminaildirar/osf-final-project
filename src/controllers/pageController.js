@@ -1,15 +1,15 @@
 const { getCategoriesByParentId } = require('../services/CategoryService');
 
-const getIndexPage = async (req, res) => {
+const getIndexPage = async (req, res, next) => {
     try {
         const roots = await getCategoriesByParentId('root');
         res.status(200).render('index', { roots });
     } catch (error) {
-        next(error);
+        console.log(error)
     }
 };
 
-const getLoginPage = async (req, res) => {
+const getLoginPage = async (req, res, next) => {
     try {
         if (userIN) return res.redirect('/');
         res.status(200).render('login');
@@ -18,7 +18,7 @@ const getLoginPage = async (req, res) => {
     }
 };
 
-const getRegisterPage = async (req, res) => {
+const getRegisterPage = async (req, res, next) => {
     try {
         if (userIN) return res.redirect('/');
         res.status(200).render('register');

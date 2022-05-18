@@ -1,5 +1,4 @@
-const axios = require('axios');
-const getData = require('./DataService');
+const { getData } = require('./DataService');
 const config = require('../config');
 
 const getCategoryById = async (rootCategoryId) => {

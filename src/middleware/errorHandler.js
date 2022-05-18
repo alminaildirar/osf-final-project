@@ -1,6 +1,7 @@
 const BadRequestError = require('../exceptions/BadRequestError');
 const RegisterError = require('../exceptions/RegisterError');
 const LoginError = require('../exceptions/LoginError');
+const UnauthorizedError = require('../exceptions/UnauthorizedError');
 
 const errorHandler = (error, req, res, next) => {
     if (error instanceof BadRequestError) {
@@ -14,6 +15,11 @@ const errorHandler = (error, req, res, next) => {
             .render('register', { error: error.message });
     }
     if (error instanceof LoginError) {
+        return res
+            .status(error.statusCode)
+            .render('login', { error: error.message });
+    }
+    if (error instanceof UnauthorizedError) {
         return res
             .status(error.statusCode)
             .render('login', { error: error.message });
