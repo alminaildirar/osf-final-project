@@ -1,78 +1,67 @@
 <%- include('partials/_header')-%>
 
 <div class="breadcrumb container">
-    <a href="/" class="breadcrumb-item"> Home </a>
-    <a href="/categories/<%= parentNames.root %>" class="breadcrumb-item">
-        <%= parentNames.root %>
-    </a>
-    <a
-        href="/categories/<%= parentNames.root %>/<%= parentCategory %>"
-        class="breadcrumb-item"
-        ><%= parentNames.parent %></a
-    >
-    <a href="/products/<%= primaryCategoryId %> " class="breadcrumb-item"
-        ><%= parentNames.subName %></a
-    >
-    <a href="" class="breadcrumb-item"><%= product.name %></a>
+  <a href="/" class="breadcrumb-item"> Home </a>
+  <a href="/categories/<%= parentNames.root %>" class="breadcrumb-item">
+    <%= parentNames.root %>
+  </a>
+  <a href="/categories/<%= parentNames.root %>/<%= parentCategory %>" class="breadcrumb-item"><%= parentNames.parent %></a>
+  <a href="/products/<%= primaryCategoryId %> " class="breadcrumb-item"><%= parentNames.subName %></a>
+  <a href="" class="breadcrumb-item"><%= product.name %></a>
 </div>
 <div class="detail container">
-    <div class="detail-img">
-        <!-- <img src="product.jpeg" alt=""> -->
-        <div id="js-gallery" class="gallery">
-            <!--Gallery Hero-->
-            <div class="gallery__hero">
-                <img src="/images/<%= images[0] %>" />
-            </div>
-            <!--Gallery Hero-->
+  <div class="detail-img">
+    <!-- <img src="product.jpeg" alt=""> -->
+    <div id="js-gallery" class="gallery">
+      <!--Gallery Hero-->
+      <div class="gallery__hero">
+        <img src="/images/<%= images[0] %>" />
+      </div>
+      <!--Gallery Hero-->
+      <!--Gallery Thumbs-->
+      <div class="gallery__thumbs">
+        <% images.forEach((image) => { %>
+        <a href="/images/<%= image %>" data-gallery="thumb">
+          <img src="/images/<%= image %>" />
+        </a>
+        <% }) %>
+      </div>
+      <!--Gallery Thumbs-->
+    </div>
+  </div>
 
-            <!--Gallery Thumbs-->
-            <div class="gallery__thumbs">
-                <% images.forEach((image) => { %>
-                <a href="/images/<%= image %>" data-gallery="thumb">
-                    <img src="/images/<%= image %>" />
-                </a>
-                <% }) %>
-            </div>
-            <!--Gallery Thumbs-->
-        </div>
+  <div class="detail-content">
+    <h3><%= product.name %></h3>
+    <p><%= product.short_description %></p>
+    <div class="detail-list">
+      <h4>Features</h4>
+      <%- product.long_description %>
     </div>
-    <div class="detail-content">
-        <h3><%= product.name %></h3>
-        <p><%= product.short_description %></p>
-        <div class="detail-list">
-            <h4>Features</h4>
-            <%- product.long_description %>
+
+    <form action="" method="post">
+      <% (product.variation_attributes).forEach((variation) => { %>
+      <div class="variants">
+        <h4><%= variation.name %></h4>
+        <div class="radio-grp">
+          <% variation.values.forEach((value) => { %>
+          <div class="radio-btn">
+            <input type="radio" id="<%= value.name %>" name="<%= variation.name %>" value="<%= value.name %>" /><label for="<%= value.name %>"><%= value.name %></label>
+          </div>
+          <% }) %>
         </div>
-        <div class="variants">
-            <% (product.variation_attributes).forEach((variation) => { %>
-            <h4><%= variation.name %></h4>
-            <div class="radio-grp">
-                <% variation.values.forEach((value) => { %>
-                <div class="radio-btn">
-                    <input
-                        type="radio"
-                        id="<%= value.name %>"
-                        name="<%= variation.name %>"
-                        value="<%= value.name %>"
-                    /><label for="<%= value.name %>"><%= value.name %></label>
-                </div>
-                <% }) %>
-            </div>
-            <% }) %>
-            <hr />
-            <div class="price">
-                <b>Price:</b> <%= product.price %>
-                <span><%= product.currency %></span>
-            </div>
-            <div class="btn-group">
-                <a href="" class="btn-card btn-cart"
-                    ><i class="fas fa-cart-plus"></i> Add to Cart</a
-                >
-                <a href="" class="btn-card btn-wish"
-                    ><i class="far fa-heart"></i> Add to Wishlist</a
-                >
-            </div>
-        </div>
-    </div>
+      </div>
+      <% }) %>
+      <hr />
+      <div class="price">
+        <div><b>Price:</b><span><%= product.price %> <%= product.currency %></span></div>
+        <div><label for="quantity">Quantity: </label><input type="number" min="1" name="quantity" id="pcs" value="1"></div>
+      </div>
+      <div class="btn-group">
+        <input type="submit" formaction="/wishlist/addItem/<%= product.id %>" value="Add to wishlist" class="btn-card btn-wish" />
+      </div>
+    </form>
+  </div>
+
 </div>
+
 <%- include('partials/_footer')-%>
