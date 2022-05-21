@@ -31,7 +31,7 @@ const getProducts = async (req, res, next) => {
         }
         return res.render('products', { roots, products, parentNames });
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
 };
 
@@ -66,10 +66,10 @@ const getSingleProduct = async (req, res, next) => {
             parentNames,
             images,
             failMessages,
-            successMessages
+            successMessages,
         });
     } catch (error) {
-        next(error)
+        next(error);
     }
 };
 

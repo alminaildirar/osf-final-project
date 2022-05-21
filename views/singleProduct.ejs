@@ -9,11 +9,11 @@
   <a href="/products/<%= primaryCategoryId %> " class="breadcrumb-item"><%= parentNames.subName %></a>
   <a href="" class="breadcrumb-item"><%= product.name %></a>
   <% if(typeof failMessages !== undefined){ %>
-    <h3 style="color: red;"><br><%= failMessages %></h1>
+  <h3 style="color: red;"><br><%= failMessages %></h1>
+    <% } %>
+    <% if(typeof successMessages !== undefined){ %>
+    <h3 style="color: green;"><br> <%= successMessages %></h1>
       <% } %>
-      <% if(typeof successMessages !== undefined){ %>
-      <h3 style="color: green;"><br> <%= successMessages %></h1>
-        <% } %>
 </div>
 <div class="detail container">
   <div class="detail-img">
@@ -51,7 +51,7 @@
         <div class="radio-grp">
           <% variation.values.forEach((value) => { %>
           <div class="radio-btn">
-            <input type="radio" id="<%= value.name %>" name="<%= variation.name %>" value="<%= value.name %>" /><label for="<%= value.name %>"><%= value.name %></label>
+            <input type="radio" id="<%= value.name %>" name="<%= variation.id %>" value="<%= value.value %>" /><label for="<%= value.name %>"><%= value.name %></label>
           </div>
           <% }) %>
         </div>
@@ -63,7 +63,7 @@
         <div><label for="quantity">Quantity: </label><input type="number" min="1" name="quantity" id="pcs" value="1"></div>
       </div>
       <div class="btn-group">
-        <input type="submit" formaction="/wishlist/addItem/<%= product.id %>" value="Add to wishlist" class="btn-card btn-wish" />
+        <input type="submit" formaction="/wishlist/addItem/<%= primaryCategoryId %>/<%= product.id %>" value="Add to wishlist" class="btn-card btn-wish" />
       </div>
     </form>
   </div>

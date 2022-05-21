@@ -53,4 +53,43 @@ const getWishProductsVariantNames = (product, variant) => {
     return variantName;
 };
 
-module.exports = { getWishlistRequest, getWishProducts };
+const addItemToWishlistRequest = async (token, data) => {
+    try {
+        const response = await axios({
+            method: 'post',
+            url: `${config.api.url}/wishlist/addItem`,
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+            data: data,
+        });
+        return response.data;
+    } catch (error) {
+        return error.response.data;
+    }
+};
+
+const getProductsOrderableVariants = async (productId) => {
+    const product = await getProductById(productId);
+    const variants = product.variants;
+    return variants;
+};
+
+const findOrderableProductId = async (variant, productId) => {
+    const orderableVariants = await getProductsOrderableVariants(productId);
+
+    for (let item of orderableVariants) {
+        if (JSON.stringify(item.variation_values) === JSON.stringify(variant)) {
+            return item.product_id;
+        }
+    }
+    return false;
+};
+
+module.exports = {
+    getWishlistRequest,
+    getWishProducts,
+    addItemToWishlistRequest,
+    findOrderableProductId,
+};
