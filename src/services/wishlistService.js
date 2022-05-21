@@ -106,10 +106,28 @@ const removeItemFromWishlistRequest = async (token, data) => {
     }
 };
 
+const changeItemQuantityRequest = async (token, data) => {
+    try {
+        const response = await axios({
+            method: 'post',
+            url: `${config.api.url}/wishlist/changeItemQuantity`,
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+            data: data,
+        });
+        return response.data;
+    } catch (error) {
+        return error.response.data;
+    }
+};
+
 module.exports = {
     getWishlistRequest,
     getWishProducts,
     addItemToWishlistRequest,
     findOrderableProductId,
-    removeItemFromWishlistRequest
+    removeItemFromWishlistRequest,
+    changeItemQuantityRequest,
 };

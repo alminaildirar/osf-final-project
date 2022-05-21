@@ -3,6 +3,7 @@ const {
     getWishlist,
     addItemToWishlist,
     removeItemFromWishlist,
+    changeItemQuantity
 } = require('../controllers/wishlistController');
 const { authCheck } = require('../middleware/authCheck');
 
@@ -18,6 +19,11 @@ routes.delete(
     '/removeItem/:productId/:variantId',
     authCheck,
     removeItemFromWishlist
+);
+routes.post(
+    '/changeItemQuantity/:productId/:variantId',
+    authCheck,
+    changeItemQuantity
 );
 
 module.exports = routes;

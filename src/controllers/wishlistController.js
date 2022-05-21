@@ -7,6 +7,7 @@ const {
     findOrderableProductId,
     addItemToWishlistRequest,
     removeItemFromWishlistRequest,
+    changeItemQuantityRequest,
 } = require('../services/WishlistService');
 
 const getWishlist = async (req, res, next) => {
@@ -122,4 +123,44 @@ const removeItemFromWishlist = async (req, res, next) => {
     }
 };
 
-module.exports = { getWishlist, addItemToWishlist, removeItemFromWishlist };
+const changeItemQuantity = async (req, res, next) => {
+    const token = req.cookies.token;
+    const { productId, variantId } = req.params;
+    const quantity = req.body.quantity;
+    try {
+        const data = {
+            secretKey: config.api.key,
+            productId,
+            variantId,
+            quantity,
+        };
+
+        const response = await changeItemQuantityRequest(token, data);
+        if (response.error) {
+            res.cookie('failMessages', response.error, {
+                httpOnly: true,
+                maxAge: 900000,
+            });
+            return res.status(404).redirect('/wishlist');
+        }
+        res.cookie(
+            'successMessages',
+            'Item quantity is changed successfully.',
+            {
+                httpOnly: true,
+                maxAge: 900000,
+            }
+        );
+
+        return res.status(200).redirect('/wishlist');
+    } catch (error) {
+        next(error);
+    }
+};
+
+module.exports = {
+    getWishlist,
+    addItemToWishlist,
+    removeItemFromWishlist,
+    changeItemQuantity,
+};

@@ -30,11 +30,13 @@
               </ul>
             </div>
             <div class="product-act">
-              <a href="/wishlist/removeItem/<%= product.id %>/<%= product.variantId %>/?_method=DELETE" class="btn-delete"><i class="fas fa-times"></i></a>
+              <a href="/wishlist/removeItem/<%= product.id %>/<%= product.variantId %>/?_method=DELETE"  class="btn-delete"><i class="fas fa-times"></i></a>
+              <form action="" method="post">
               <div class="quantity">
                 <label for="quantity">Quantity: </label><input type="number" name="quantity" min="1" id="quantity" value="<%= product.quantity %>">
               </div>
-              <a href="" class="pbtn update-btn">Update</a>
+              <input type="submit" formaction="/wishlist/changeItemQuantity/<%= product.id %>/<%= product.variantId %>" value="Update" class="pbtn update-btn" />
+              </form>
               <a href="" class="btn-card btn-cart"><i class="fas fa-cart-plus"></i> Add to Cart</a>
             </div>
           </li>
