@@ -8,6 +8,12 @@
   <a href="/categories/<%= parentNames.root %>/<%= parentCategory %>" class="breadcrumb-item"><%= parentNames.parent %></a>
   <a href="/products/<%= primaryCategoryId %> " class="breadcrumb-item"><%= parentNames.subName %></a>
   <a href="" class="breadcrumb-item"><%= product.name %></a>
+  <% if(typeof failMessages !== undefined){ %>
+    <h3 style="color: red;"><br><%= failMessages %></h1>
+      <% } %>
+      <% if(typeof successMessages !== undefined){ %>
+      <h3 style="color: green;"><br> <%= successMessages %></h1>
+        <% } %>
 </div>
 <div class="detail container">
   <div class="detail-img">

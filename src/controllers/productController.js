@@ -36,6 +36,8 @@ const getProducts = async (req, res, next) => {
 };
 
 const getSingleProduct = async (req, res, next) => {
+    const failMessages = req.cookies.failMessages;
+    const successMessages = req.cookies.successMessages;
     const id = req.params.id;
     const primaryCategoryId = req.params.primaryCategoryId;
 
@@ -63,9 +65,11 @@ const getSingleProduct = async (req, res, next) => {
             primaryCategoryId,
             parentNames,
             images,
+            failMessages,
+            successMessages
         });
     } catch (error) {
-        console.log(error)
+        next(error)
     }
 };
 

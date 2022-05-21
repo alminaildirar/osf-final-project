@@ -1,8 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const config = require('./config');
-const cookieParser = require("cookie-parser");
-const { errorHandler } = require('./middleware/errorHandler')
+const cookieParser = require('cookie-parser');
+const { errorHandler } = require('./middleware/errorHandler');
 
 dotenv.config();
 
@@ -20,9 +20,11 @@ app.use(express.urlencoded({ extended: false }));
 global.userIN = null;
 
 app.use('*', (req, res, next) => {
+    res.clearCookie('failMessages');
+    res.clearCookie('successMessages');
     userIN = req.cookies.user;
     next();
-  });
+});
 
 //---Prevent to receiving GET request to /favicon.ico
 app.get('/favicon.ico', (req, res) => res.status(204));
