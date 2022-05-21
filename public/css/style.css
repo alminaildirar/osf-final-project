@@ -473,14 +473,22 @@ textarea {
   transition: all .2s ease-in;
   border-radius: 8px;
 }
-.delete-btn{
+
+.btn-delete{
+  padding: 10px 15px;
+  margin-left: 10px; 
+  color: white;
+  transition: all .2s ease-in;
+  border-radius: 8px;
   background-color: red;
   border: 1px solid red;
 }
-.delete-btn:hover {
+
+.btn-delete:hover {
   color: red;
   background: white;
 }
+
 .update-btn{
   width: 90px;
   background-color: orange;
