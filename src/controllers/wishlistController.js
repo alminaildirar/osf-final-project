@@ -6,9 +6,12 @@ const {
     getWishProducts,
     findOrderableProductId,
     addItemToWishlistRequest,
+    removeItemFromWishlistRequest,
 } = require('../services/WishlistService');
 
 const getWishlist = async (req, res, next) => {
+    const failMessages = req.cookies.failMessages;
+    const successMessages = req.cookies.successMessages;
     const token = req.cookies.token;
     try {
         const roots = await getCategoriesByParentId('root');
@@ -19,7 +22,12 @@ const getWishlist = async (req, res, next) => {
             );
         }
         const wishProducts = await getWishProducts(response.items);
-        res.status(200).render('wish', { roots, wishProducts });
+        res.status(200).render('wish', {
+            roots,
+            wishProducts,
+            failMessages,
+            successMessages,
+        });
     } catch (error) {
         next(error);
     }
@@ -80,4 +88,38 @@ const addItemToWishlist = async (req, res, next) => {
     }
 };
 
-module.exports = { getWishlist, addItemToWishlist };
+const removeItemFromWishlist = async (req, res, next) => {
+    const token = req.cookies.token;
+    const { productId, variantId } = req.params;
+    try {
+        const data = {
+            secretKey: config.api.key,
+            productId,
+            variantId,
+        };
+
+        const response = await removeItemFromWishlistRequest(token, data);
+        if (response.error) {
+            res.cookie('failMessages', response.error, {
+                httpOnly: true,
+                maxAge: 900000,
+            });
+            return res.status(404).redirect('/wishlist');
+        }
+
+        res.cookie(
+            'successMessages',
+            'The item is removed from your wishlist successfully.',
+            {
+                httpOnly: true,
+                maxAge: 900000,
+            }
+        );
+
+        return res.status(200).redirect('/wishlist');
+    } catch (error) {
+        next();
+    }
+};
+
+module.exports = { getWishlist, addItemToWishlist, removeItemFromWishlist };

@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const config = require('./config');
 const cookieParser = require('cookie-parser');
+const methodOverride = require('method-override');
 const { errorHandler } = require('./middleware/errorHandler');
 
 dotenv.config();
@@ -14,7 +15,8 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.static('public'));
 app.use(cookieParser());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method', { methods: ['POST', 'GET'] }));
 
 //--Global Variable--
 global.userIN = null;

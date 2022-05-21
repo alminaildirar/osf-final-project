@@ -26,6 +26,8 @@ const getWishProducts = async (products) => {
         wishItem.name = product.name;
         wishItem.image = product.image_groups[0].images[0].link;
         wishItem.price = product.price;
+        wishItem.id = product.id;
+        wishItem.variantId = item.variant.product_id;
         wishItem.variant = getWishProductsVariantNames(
             product,
             item.variant.variation_values
@@ -87,9 +89,27 @@ const findOrderableProductId = async (variant, productId) => {
     return false;
 };
 
+const removeItemFromWishlistRequest = async (token, data) => {
+    try {
+        const response = await axios({
+            method: 'delete',
+            url: `${config.api.url}/wishlist/removeItem`,
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+            data: data,
+        });
+        return response.data;
+    } catch (error) {
+        return error.response.data;
+    }
+};
+
 module.exports = {
     getWishlistRequest,
     getWishProducts,
     addItemToWishlistRequest,
     findOrderableProductId,
+    removeItemFromWishlistRequest
 };
