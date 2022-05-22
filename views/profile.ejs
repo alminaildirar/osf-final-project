@@ -1,0 +1,33 @@
+<%- include('partials/_header')-%>
+  <div class="breadcrumb container">
+    <a href="/" class="breadcrumb-item">Home</a>
+    <a href="" class="breadcrumb-item">Profile</a>
+  </div>
+  <div class="profile-page container">
+    <div class="profile-card">
+      <div class="user-img"><img src="/images/user.png" alt=""></div>
+      <div class="user-info">
+        <div class="username"><i class="fas fa-at"></i><%= user.name %></div>
+        <div class="email"><i class="far fa-envelope"></i> <%= user.email %></div>
+        <div class="register"><i class="far fa-calendar-plus"></i> <%= user.createdAt %></div>
+      </div>
+      <div class="orders-info">
+        <a class="cart-icon" href="/cart">
+          <span class="bag-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="bag-count"><%= cartProductsNumber %></span>
+          </span>
+          <span class="bag-label">View Cart</span>
+        </a>
+        <a class="cart-icon wish-icon" href="/wishlist">
+          <span class="bag-icon">
+            <i class="fas fa-heart"></i>
+            <span class="bag-count"><%= wishProductsNumber %></span>
+          </span>
+          <span class="bag-label">View Wishlist</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  </div>
+  <%- include('partials/_footer')-%>

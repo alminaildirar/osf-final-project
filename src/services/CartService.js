@@ -122,6 +122,14 @@ const changeItemQuantityCartRequest = async (token, data) => {
     }
 };
 
+const cartProductsLength = async (token) => {
+    const cart = await getCartRequest(token);
+    if (cart.error) {
+        return 0;
+    }
+    return cart.items.length;
+};
+
 module.exports = {
     getCartRequest,
     getCartProducts,
@@ -129,4 +137,5 @@ module.exports = {
     addItemToCartRequest,
     removeItemFromCartRequest,
     changeItemQuantityCartRequest,
+    cartProductsLength,
 };

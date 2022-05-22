@@ -124,6 +124,14 @@ const changeItemQuantityRequest = async (token, data) => {
     }
 };
 
+const wishProductsLength = async (token) => {
+    const wishlist = await getWishlistRequest(token);
+    if (wishlist.error) {
+        return 0;
+    }
+    return wishlist.items.length;
+};
+
 module.exports = {
     getWishlistRequest,
     getWishProducts,
@@ -131,4 +139,5 @@ module.exports = {
     findOrderableProductId,
     removeItemFromWishlistRequest,
     changeItemQuantityRequest,
+    wishProductsLength,
 };
