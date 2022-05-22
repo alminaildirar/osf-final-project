@@ -5,6 +5,7 @@ const {
     getCartProducts,
     addItemToCartRequest,
     getCartProductsVariantIds,
+    removeItemFromCartRequest,
 } = require('../services/CartService');
 const {
     findOrderableProductId,
@@ -102,4 +103,37 @@ const addItemToCart = async (req, res, next) => {
     }
 };
 
-module.exports = { getCart, addItemToCart };
+const removeItemFromCart = async (req, res, next) => {
+    const token = req.cookies.token;
+    const { productId, variantId } = req.params;
+    try {
+        const data = {
+            secretKey: config.api.key,
+            productId,
+            variantId,
+        };
+
+        const response = await removeItemFromCartRequest(token, data);
+        if (response.error) {
+            res.cookie('failMessages', response.error, {
+                httpOnly: true,
+                maxAge: 900000,
+            });
+            return res.status(404).redirect('/cart');
+        }
+
+        res.cookie(
+            'successMessages',
+            'The item is removed from your cart successfully.',
+            {
+                httpOnly: true,
+                maxAge: 900000,
+            }
+        );
+
+        return res.status(200).redirect('/cart');
+    } catch (error) {
+        next(error);
+    }
+};
+module.exports = { getCart, addItemToCart, removeItemFromCart };

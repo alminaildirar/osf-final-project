@@ -88,4 +88,27 @@ const addItemToCartRequest = async (token, data) => {
     }
 };
 
-module.exports = { getCartRequest, getCartProducts, getCartProductsVariantIds, addItemToCartRequest };
+const removeItemFromCartRequest = async (token, data) => {
+    try {
+        const response = await axios({
+            method: 'delete',
+            url: `${config.api.url}/cart/removeItem`,
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+            data: data,
+        });
+        return response.data;
+    } catch (error) {
+        return error.response.data;
+    }
+};
+
+module.exports = {
+    getCartRequest,
+    getCartProducts,
+    getCartProductsVariantIds,
+    addItemToCartRequest,
+    removeItemFromCartRequest,
+};
