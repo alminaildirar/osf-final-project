@@ -17,10 +17,12 @@ const getWishlist = async (req, res, next) => {
     try {
         const roots = await getCategoriesByParentId('root');
         const response = await getWishlistRequest(token);
-        if (response.error === 'There is no wishlist created for this user') {
-            throw new BadRequestError(
-                'There are no products in your wishlist.'
-            );
+        if (response.error) {
+            return res.status(400).render('wish', {
+                roots,
+                failMessages: response.error,
+                successMessages,
+            });
         }
         const wishProducts = await getWishProducts(response.items);
         res.status(200).render('wish', {

@@ -4,16 +4,30 @@
   <a href="" class="breadcrumb-item">Wishlist</a>
 </div>
 <div class="cart-page container">
-  <% if(typeof failMessages !== undefined){ %>
-  <h3 style="color: red;"><%= failMessages %></h1>
-    <% } %>
-    <% if(typeof successMessages !== undefined){ %>
-    <h3 style="color: green;"> <%= successMessages %></h1>
+  <% if(typeof failMessages !== undefined ){ %>
+    <% if( failMessages !== "There is no wishlist created for this user" ){ %>
+    <h3 style="color: red;"><%= failMessages %></h1>
       <% } %>
-      <h1>Wishlist</h1>
+      <% } %>
+      <% if(typeof successMessages !== undefined){ %>
+      <h3 style="color: green;"> <%= successMessages %></h1>
+        <% } %>
+        <h1>Wishlist</h1>
+        <% if(typeof failMessages !== undefined ){ %>
+        <% if( failMessages == "There is no wishlist created for this user" ){ %>
+        <div class="cart-alert">
+          <img src="/images/brokenheart.png" alt="">
+          <h2> <br>  There is no product in your wishlist yet.</h2>
+        </div>
+        <% } %>
+        <% } %>
+  
+        <% if( failMessages !== "There is no wishlist created for this user" ){ %>
+        <% if(wishProducts){ %>
       <div class="cart">
         <ul class="product-list">
           <% wishProducts.forEach((product) => { %>
+            <form action="" method="post">
           <li>
             <div class="product-img"><img src="/images/<%= product.image %>" alt=""></div>
             <div class="product-detail">
@@ -23,6 +37,7 @@
                 <% let variant = Object.entries(product.variant) %>
                 <% variant.forEach((item) => { %>
                 <li><b style="text-transform: capitalize ;"><%= item[0] %></b>: <%= item[1] %></li>
+                <input class="none"type="text" name="<%= item[0] %>"  id="<%= item[0] %>" value="<%= item[1] %>">
                 <% }) %>
 
                 <li><b>Unit Price</b>: $<%= product.price %></li>
@@ -31,16 +46,17 @@
             </div>
             <div class="product-act">
               <a href="/wishlist/removeItem/<%= product.id %>/<%= product.variantId %>/?_method=DELETE"  class="btn-delete"><i class="fas fa-times"></i></a>
-              <form action="" method="post">
               <div class="quantity">
                 <label for="quantity">Quantity: </label><input type="number" name="quantity" min="1" id="quantity" value="<%= product.quantity %>">
               </div>
               <input type="submit" formaction="/wishlist/changeItemQuantity/<%= product.id %>/<%= product.variantId %>" value="Update" class="pbtn update-btn" />
-              </form>
-              <a href="" class="btn-card btn-cart"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+              <input type="submit" formaction="/cart/addItem/<%= product.primaryCategoryId %>/<%= product.id %>/wish" value="Add To Cart" class="btn-card btn-cart" />
             </div>
           </li>
-          <% }) %>
+        </form>
+        <% }) %>
+        <% } %>
+        <% } %>
         </ul>
       </div>
 </div>

@@ -4,6 +4,7 @@ const LoginError = require('../exceptions/LoginError');
 const UnauthorizedError = require('../exceptions/UnauthorizedError');
 
 const errorHandler = (error, req, res, next) => {
+    console.log(error)
     if (error instanceof BadRequestError) {
         return res
             .status(error.statusCode)

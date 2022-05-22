@@ -93,6 +93,9 @@ a {
   position: relative;
   padding: 1.5em 0;
 } */
+.none{
+  display: none;
+}
 textarea, input, select {
   font-size: 16px;
   color: #bebebe;
@@ -1387,6 +1390,7 @@ textarea {
   opacity: 0.75;
   transition: opacity 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
+
 .gallery__thumbs a:hover {
   opacity: 1;
 }

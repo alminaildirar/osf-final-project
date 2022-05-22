@@ -8,12 +8,6 @@
   <a href="/categories/<%= parentNames.root %>/<%= parentCategory %>" class="breadcrumb-item"><%= parentNames.parent %></a>
   <a href="/products/<%= primaryCategoryId %> " class="breadcrumb-item"><%= parentNames.subName %></a>
   <a href="" class="breadcrumb-item"><%= product.name %></a>
-  <% if(typeof failMessages !== undefined){ %>
-  <h3 style="color: red;"><br><%= failMessages %></h1>
-    <% } %>
-    <% if(typeof successMessages !== undefined){ %>
-    <h3 style="color: green;"><br> <%= successMessages %></h1>
-      <% } %>
 </div>
 <div class="detail container">
   <div class="detail-img">
@@ -37,35 +31,42 @@
   </div>
 
   <div class="detail-content">
-    <h3><%= product.name %></h3>
-    <p><%= product.short_description %></p>
-    <div class="detail-list">
-      <h4>Features</h4>
-      <%- product.long_description %>
-    </div>
+    <% if(typeof failMessages !== undefined){ %>
+    <h3 style="color: red;"><br><%= failMessages %></h1>
+      <% } %>
+      <% if(typeof successMessages !== undefined){ %>
+      <h3 style="color: green;"><br> <%= successMessages %></h1>
+        <% } %>
+        <h3><%= product.name %></h3>
+        <p><%= product.short_description %></p>
+        <div class="detail-list">
+          <h4>Features</h4>
+          <%- product.long_description %>
+        </div>
 
-    <form action="" method="post">
-      <% (product.variation_attributes).forEach((variation) => { %>
-      <div class="variants">
-        <h4><%= variation.name %></h4>
-        <div class="radio-grp">
-          <% variation.values.forEach((value) => { %>
-          <div class="radio-btn">
-            <input type="radio" id="<%= value.name %>" name="<%= variation.id %>" value="<%= value.value %>" /><label for="<%= value.name %>"><%= value.name %></label>
+        <form action="" method="post">
+          <% (product.variation_attributes).forEach((variation) => { %>
+          <div class="variants">
+            <h4><%= variation.name %></h4>
+            <div class="radio-grp">
+              <% variation.values.forEach((value) => { %>
+              <div class="radio-btn">
+                <input type="radio" id="<%= value.name %>" name="<%= variation.id %>" value="<%= value.value %>" /><label for="<%= value.name %>"><%= value.name %></label>
+              </div>
+              <% }) %>
+            </div>
           </div>
           <% }) %>
-        </div>
-      </div>
-      <% }) %>
-      <hr />
-      <div class="price">
-        <div><b>Price:</b><span><%= product.price %> <%= product.currency %></span></div>
-        <div><label for="quantity">Quantity: </label><input type="number" min="1" name="quantity" id="pcs" value="1"></div>
-      </div>
-      <div class="btn-group">
-        <input type="submit" formaction="/wishlist/addItem/<%= primaryCategoryId %>/<%= product.id %>" value="Add to wishlist" class="btn-card btn-wish" />
-      </div>
-    </form>
+          <hr />
+          <div class="price">
+            <div><b>Price:</b><span><%= product.price %> <%= product.currency %></span></div>
+            <div><label for="quantity">Quantity: </label><input type="number" min="1" name="quantity" id="pcs" value="1"></div>
+          </div>
+          <div class="btn-group">
+            <input type="submit" formaction="/wishlist/addItem/<%= primaryCategoryId %>/<%= product.id %>" value="Add to wishlist" class="btn-card btn-wish" />
+            <input type="submit" formaction="/cart/addItem/<%= primaryCategoryId %>/<%= product.id %>/product" value="Add To Cart" class="btn-card btn-cart" />
+          </div>
+        </form>
   </div>
 
 </div>
