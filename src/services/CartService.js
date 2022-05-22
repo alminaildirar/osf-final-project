@@ -55,4 +55,37 @@ const getCartProductsVariantNames = (product, variant) => {
     return variantName;
 };
 
-module.exports = { getCartRequest, getCartProducts };
+const getCartProductsVariantIds = (product, variant) => {
+    let variantName = {};
+    const variants = Object.keys(variant);
+    for (let item of product.variation_attributes) {
+        if (variants.includes(item.id)) {
+            for (let values of item.values) {
+                if (values.name === variant[item.id]) {
+                    variantName[item.id] = values.value;
+                }
+            }
+        }
+    }
+
+    return variantName;
+};
+
+const addItemToCartRequest = async (token, data) => {
+    try {
+        const response = await axios({
+            method: 'post',
+            url: `${config.api.url}/cart/addItem`,
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+            data: data,
+        });
+        return response.data;
+    } catch (error) {
+        return error.response.data;
+    }
+};
+
+module.exports = { getCartRequest, getCartProducts, getCartProductsVariantIds, addItemToCartRequest };

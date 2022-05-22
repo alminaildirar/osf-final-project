@@ -27,6 +27,7 @@ const getWishProducts = async (products) => {
         wishItem.image = product.image_groups[0].images[0].link;
         wishItem.price = product.price;
         wishItem.id = product.id;
+        wishItem.primaryCategoryId = product.primary_category_id;
         wishItem.variantId = item.variant.product_id;
         wishItem.variant = getWishProductsVariantNames(
             product,
