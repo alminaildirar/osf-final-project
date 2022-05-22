@@ -1,32 +1,31 @@
 <%- include('partials/_header')-%>
 <div class="breadcrumb container">
   <a href="/" class="breadcrumb-item">Home</a>
-  <a href="" class="breadcrumb-item">Wishlist</a>
+  <a href="" class="breadcrumb-item">Cart</a>
 </div>
 <div class="cart-page container">
   <% if(typeof failMessages !== undefined ){ %>
-  <% if( failMessages !== "There is no wishlist created for this user" ){ %>
+  <% if( failMessages !== "There is no cart created for this user" ){ %>
   <h3 style="color: red;"><%= failMessages %></h1>
     <% } %>
     <% } %>
     <% if(typeof successMessages !== undefined){ %>
     <h3 style="color: green;"> <%= successMessages %></h1>
       <% } %>
-      <h1>Wishlist</h1>
+      <h1>Cart</h1>
       <% if(typeof failMessages !== undefined ){ %>
-      <% if( failMessages == "There is no wishlist created for this user" ){ %>
+      <% if( failMessages == "There is no cart created for this user" ){ %>
       <div class="cart-alert">
-        <img src="/images/brokenheart.png" alt="">
-        <h2> <br> There is no product in your wishlist yet.</h2>
+        <img src="/images/empty.png" alt="">
+        <h2> <br> There is no product in your cart yet.</h2>
       </div>
       <% } %>
       <% } %>
 
-      <% if( failMessages !== "There is no wishlist created for this user" ){ %>
-      <% if(wishProducts){ %>
+      <% if( failMessages !== "There is no cart created for this user" ){ %>
       <div class="cart">
         <ul class="product-list">
-          <% wishProducts.forEach((product) => { %>
+          <% cartProducts.forEach((product) => { %>
           <form action="" method="post">
             <li>
               <div class="product-img"><img src="/images/<%= product.image %>" alt=""></div>
@@ -37,7 +36,6 @@
                   <% let variant = Object.entries(product.variant) %>
                   <% variant.forEach((item) => { %>
                   <li><b style="text-transform: capitalize ;"><%= item[0] %></b>: <%= item[1] %></li>
-                  <input class="none" type="text" name="<%= item[0] %>" id="<%= item[0] %>" value="<%= item[1] %>">
                   <% }) %>
 
                   <li><b>Unit Price</b>: $<%= product.price %></li>
@@ -45,20 +43,33 @@
                 </ul>
               </div>
               <div class="product-act">
-                <a href="/wishlist/removeItem/<%= product.id %>/<%= product.variantId %>/?_method=DELETE" class="btn-delete"><i class="fas fa-times"></i></a>
-                <div class="quantity">
-                  <label for="quantity">Quantity: </label><input type="number" name="quantity" min="1" id="quantity" value="<%= product.quantity %>">
-                </div>
-                <input type="submit" formaction="/wishlist/changeItemQuantity/<%= product.id %>/<%= product.variantId %>" value="Update" class="pbtn update-btn" />
-                <input type="submit" formaction="/cart/addItem/<%= product.primaryCategoryId %>/<%= product.id %>/wish" value="Add To Cart" class="btn-card btn-cart" />
+                <a href="/cart/removeItem/<%= product.id %>/<%= product.variantId %>/?_method=DELETE" class="btn-delete"><i class="fas fa-times"></i></a>
+                <form action="" method="post">
+                  <div class="quantity">
+                    <label for="quantity">Quantity: </label><input type="number" name="quantity" min="1" id="quantity" value="<%= product.quantity %>">
+                  </div>
+                  <input type="submit" formaction="/cart/changeItemQuantity/<%= product.id %>/<%= product.variantId %>" value="Update" class="pbtn update-btn" />
+                </form>
               </div>
             </li>
+
           </form>
           <% }) %>
-          <% } %>
-          <% } %>
         </ul>
+        <hr>
+        <div class="get-order">
+          <div class="order-left">
+            <label for="addreess">Delivery Address:
+              <textarea name="" id="address" cols="3" rows="4"></textarea>
+            </label>
+          </div>
+          <div class="order-right">
+            <h4>Total : $450.00</h4>
+            <button class="btn-card">Create Order</button>
+          </div>
+        </div>
       </div>
+      <% } %>
 </div>
 </div>
 <%- include('partials/_footer')-%>
