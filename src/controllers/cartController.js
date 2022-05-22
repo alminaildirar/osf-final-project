@@ -6,6 +6,7 @@ const {
     addItemToCartRequest,
     getCartProductsVariantIds,
     removeItemFromCartRequest,
+    changeItemQuantityCartRequest,
 } = require('../services/CartService');
 const {
     findOrderableProductId,
@@ -136,4 +137,44 @@ const removeItemFromCart = async (req, res, next) => {
         next(error);
     }
 };
-module.exports = { getCart, addItemToCart, removeItemFromCart };
+
+const changeItemQuantityCart = async (req, res, next) => {
+    const token = req.cookies.token;
+    const { productId, variantId } = req.params;
+    const quantity = req.body.quantity;
+    try {
+        const data = {
+            secretKey: config.api.key,
+            productId,
+            variantId,
+            quantity,
+        };
+
+        const response = await changeItemQuantityCartRequest(token, data);
+        if (response.error) {
+            res.cookie('failMessages', response.error, {
+                httpOnly: true,
+                maxAge: 900000,
+            });
+            return res.status(404).redirect('/cart');
+        }
+        res.cookie(
+            'successMessages',
+            'Item quantity is changed successfully.',
+            {
+                httpOnly: true,
+                maxAge: 900000,
+            }
+        );
+
+        return res.status(200).redirect('/cart');
+    } catch (error) {
+        next(error);
+    }
+};
+module.exports = {
+    getCart,
+    addItemToCart,
+    removeItemFromCart,
+    changeItemQuantityCart,
+};

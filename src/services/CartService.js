@@ -105,10 +105,28 @@ const removeItemFromCartRequest = async (token, data) => {
     }
 };
 
+const changeItemQuantityCartRequest = async (token, data) => {
+    try {
+        const response = await axios({
+            method: 'post',
+            url: `${config.api.url}/cart/changeItemQuantity`,
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+            data: data,
+        });
+        return response.data;
+    } catch (error) {
+        return error.response.data;
+    }
+};
+
 module.exports = {
     getCartRequest,
     getCartProducts,
     getCartProductsVariantIds,
     addItemToCartRequest,
     removeItemFromCartRequest,
+    changeItemQuantityCartRequest,
 };

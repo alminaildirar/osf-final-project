@@ -3,6 +3,7 @@ const {
     getCart,
     addItemToCart,
     removeItemFromCart,
+    changeItemQuantityCart,
 } = require('../controllers/cartController');
 const { authCheck } = require('../middleware/authCheck');
 
@@ -18,6 +19,11 @@ routes.delete(
     '/removeItem/:productId/:variantId',
     authCheck,
     removeItemFromCart
+);
+routes.post(
+    '/changeItemQuantity/:productId/:variantId',
+    authCheck,
+    changeItemQuantityCart
 );
 
 module.exports = routes;
