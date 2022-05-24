@@ -95,6 +95,8 @@ const removeItemFromWishlist = async (req, res, next) => {
     const token = req.cookies.token;
     const { productId, variantId } = req.params;
     try {
+        console.log(productId)
+        console.log(variantId)
         const data = {
             secretKey: config.api.key,
             productId,

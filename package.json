@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --runInBand --detectOpenHandles --forceExit",
     "start": "nodemon src/server.js"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "author": "",
   "license": "ISC",
@@ -18,5 +21,9 @@
     "method-override": "^3.0.0",
     "moment": "^2.29.3",
     "nodemon": "^2.0.16"
+  },
+  "devDependencies": {
+    "jest": "^23.6.0",
+    "supertest": "^6.2.3"
   }
 }

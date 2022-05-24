@@ -140,4 +140,6 @@ module.exports = {
     removeItemFromWishlistRequest,
     changeItemQuantityRequest,
     wishProductsLength,
+    getWishProductsVariantNames,
+    getProductsOrderableVariants
 };
