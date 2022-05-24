@@ -1,0 +1,62 @@
+<%- include('partials/_header')-%>
+<div class="breadcrumb container">
+  <a href="/" class="breadcrumb-item">Home</a>
+  <a href="" class="breadcrumb-item">Orders</a>
+</div>
+<div class="order-page container">
+  <% if(typeof failMessages !== undefined ){ %>
+  <% if( failMessages !== "There are no orders for this user" ){ %>
+  <h3 style="color: red;"><%= failMessages %></h1>
+    <% } %>
+    <% } %>
+    <% if(typeof failMessages !== undefined ){ %>
+    <% if( failMessages == "There are no orders for this user" ){ %>
+    <div class="cart-alert">
+      <h2>There are no orders yet. </h2>
+    </div>
+    <% } %>
+    <% } %>
+    <% if( failMessages !== "There are no orders for this user" ){ %>
+    <% orders.forEach((order) => { %>
+    <div class="order">
+      <h2>Order</h2>
+      <table>
+        <thead>
+          <tr>
+            <th class="">#</th>
+            <th class="">Product</th>
+            <th class="">Quantity</th>
+            <th class="">Unit Price</th>
+            <th class="">Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% let total = 0 ;%>
+          <% let i=1 ;%>
+          <% order.items.forEach((item) => { %>
+          <tr>
+            <th><%= i %></th>
+            <th><%= item.productId %></th>
+            <th><%= item.quantity %></th>
+            <th><%= item.variant.price %></th>
+            <th><%= (item.quantity)*(item.variant.price) %></th>
+          </tr>
+          <% total += (item.quantity)*(item.variant.price)  %>
+          <% i++; %>
+          <% }) %>
+        </tbody>
+      </table>
+      <div class="order-detail">
+        <div class="order-total">
+          <div><b>Total:</b> <span>$ <%= total %></span></div>
+        </div>
+        <div class="order-info">
+          <div><b>Payment ID:</b> <%= order.paymentId %></div>
+          <div><b>Shipping Address:</b> <%= order.address %></div>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+    <% } %>
+</div>
+<%- include('partials/_footer')-%>

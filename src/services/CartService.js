@@ -130,6 +130,14 @@ const cartProductsLength = async (token) => {
     return cart.items.length;
 };
 
+const calculateTotalPriceOfCart = (products) => {
+    let totalprice = 0;
+    products.forEach((product) => {
+       totalprice += ((product.price) * (product.quantity))
+    })
+   return totalprice;
+}
+
 module.exports = {
     getCartRequest,
     getCartProducts,
@@ -138,4 +146,5 @@ module.exports = {
     removeItemFromCartRequest,
     changeItemQuantityCartRequest,
     cartProductsLength,
+    calculateTotalPriceOfCart
 };

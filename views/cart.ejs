@@ -57,17 +57,19 @@
           <% }) %>
         </ul>
         <hr>
-        <div class="get-order">
-          <div class="order-left">
-            <label for="addreess">Delivery Address:
-              <textarea name="" id="address" cols="3" rows="4"></textarea>
-            </label>
+        <form action="/order/createOrder" method="post">
+          <div class="get-order">
+            <div class="order-left">
+              <label for="addreess">Delivery Address:
+                <textarea name="address" id="address" cols="3" rows="4" required></textarea>
+              </label>
+            </div>
+            <div class="order-right">
+              <h4>Total : $<%= totalPrice %></h4>
+              <input type="submit" value="Create Order" class="btn-card" />
+            </div>
           </div>
-          <div class="order-right">
-            <h4>Total : $450.00</h4>
-            <button class="btn-card">Create Order</button>
-          </div>
-        </div>
+        </form>
       </div>
       <% } %>
 </div>

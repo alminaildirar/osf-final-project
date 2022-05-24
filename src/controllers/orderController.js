@@ -1,6 +1,12 @@
 const BadRequestError = require('../exceptions/BadRequestError');
-const { getOrderRequest } = require('../services/OrderService');
+const { getCartRequest } = require('../services/CartService');
+const {
+    generatePaymentId,
+    createOrderRequest,
+    getOrderRequest,
+} = require('../services/OrderService');
 const { getCategoriesByParentId } = require('../services/CategoryService');
+const config = require('../config');
 
 const getOrder = async (req, res, next) => {
     const failMessages = req.cookies.failMessages;
@@ -26,4 +32,39 @@ const getOrder = async (req, res, next) => {
     }
 };
 
-module.exports = { getOrder };
+const createOrder = async (req, res, next) => {
+    const token = req.cookies.token;
+    const address = req.body.address;
+
+    try {
+        const cart = await getCartRequest(token);
+        if (!cart.items) throw new BadRequestError();
+        const paymentId = generatePaymentId();
+        const data = {
+            secretKey: config.api.key,
+            address,
+            paymentId,
+            items: cart.items,
+        };
+
+        const response = await createOrderRequest(data, token);
+
+        if (response.error) {
+            res.cookie('failMessages', response.error, {
+                httpOnly: true,
+                maxAge: 900000,
+            });
+            return res.status(404).redirect(`/cart`);
+        }
+
+        res.cookie('successMessages', 'Your order is successfully created.', {
+            httpOnly: true,
+            maxAge: 900000,
+        });
+        res.status(200).redirect('/cart');
+    } catch (error) {
+        next(error);
+    }
+};
+
+module.exports = { createOrder, getOrder };

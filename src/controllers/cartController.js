@@ -7,6 +7,7 @@ const {
     getCartProductsVariantIds,
     removeItemFromCartRequest,
     changeItemQuantityCartRequest,
+    calculateTotalPriceOfCart
 } = require('../services/CartService');
 const {
     findOrderableProductId,
@@ -29,12 +30,14 @@ const getCart = async (req, res, next) => {
             });
         }
         const cartProducts = await getCartProducts(response.items);
+        const totalPrice = calculateTotalPriceOfCart(cartProducts)
 
         res.status(200).render('cart', {
             roots,
             cartProducts,
             failMessages,
             successMessages,
+            totalPrice
         });
     } catch (error) {
         next(error);
