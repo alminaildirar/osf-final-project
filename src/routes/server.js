@@ -5,4 +5,5 @@ module.exports = (app) => {
     app.use('/auth', require('./authRoute'));
     app.use('/wishlist', require('./wishlistRoute'));
     app.use('/cart', require('./cartRoute'));
+    app.use('/order', require('./orderRoute'));
 };
