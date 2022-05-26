@@ -14,10 +14,11 @@
       <% } %>
       <% if(typeof failMessages !== undefined ){ %>
       <% if( failMessages == "There is no cart created for this user" ){ %>
-      <div class="cart-alert">
-        <img class="img-warning" src="/images/empty.png" alt="">
-        <h2> <br> There is no product in your cart yet.</h2>
-      </div>
+        <div class="img-container" style="text-align: center;">
+          <img class="img-warning" src="/images/empty.png" alt="">
+          <h2> <br> There is no product in your cart yet. </h2>
+          <img  style="height: 300px;"class="img-warning" src="/images/emp.png" alt="">
+        </div>
       <% } %>
       <% } %>
 
@@ -25,31 +26,29 @@
       <div class="cart">
         <ul class="product-list">
           <% cartProducts.forEach((product) => { %>
-          <form action="" method="post">
-            <li>
-              <div class="product-img"><img src="/images/<%= product.image %>" alt=""></div>
-              <div class="product-detail">
-                <h4><%= product.name %></h4>
-                <hr>
-                <ul class="product-property">
-                  <% let variant = Object.entries(product.variant) %>
-                  <% variant.forEach((item) => { %>
-                  <li><b style="text-transform: capitalize ;"><%= item[0] %></b>: <%= item[1] %></li>
-                  <% }) %>
+          <li>
+            <div class="product-img"><img src="/images/<%= product.image %>" alt=""></div>
+            <div class="product-detail">
+              <h4><%= product.name %></h4>
+              <hr>
+              <ul class="product-property">
+                <% let variant = Object.entries(product.variant) %>
+                <% variant.forEach((item) => { %>
+                <li><b style="text-transform: capitalize ;"><%= item[0] %></b>: <%= item[1] %></li>
+                <% }) %>
 
-                  <li><b>Unit Price</b>: $<%= product.price %></li>
-                  <li><b>Subtotal</b>: $<%= (product.price) * (product.quantity) %></li>
-                </ul>
+                <li><b>Unit Price</b>: $<%= product.price %></li>
+                <li><b>Subtotal</b>: $<%= (product.price) * (product.quantity) %></li>
+              </ul>
+            </div>
+            <form class="product-act" method="post">
+              <a href="/cart/removeItem/<%= product.id %>/<%= product.variantId %>/?_method=DELETE" class="pbtn delete-btn"><i class="fas fa-times"></i></a>
+              <div class="quantity">
+                <label for="quantity">Quantity: </label><input type="number" name="quantity" min="1" id="quantity" value="<%= product.quantity %>">
               </div>
-              <form class="product-act" method="post">
-                <a href="/cart/removeItem/<%= product.id %>/<%= product.variantId %>/?_method=DELETE" class="pbtn delete-btn"><i class="fas fa-times"></i></a>
-                <div class="quantity">
-                  <label for="quantity">Quantity: </label><input type="number" name="quantity" min="1" id="quantity" value="<%= product.quantity %>">
-                </div>
-                <input type="submit" formaction="/cart/changeItemQuantity/<%= product.id %>/<%= product.variantId %>" value="Update" class="pbtn update-btn" />
-              </form>
-            </li>
-          </form>
+              <input type="submit" formaction="/cart/changeItemQuantity/<%= product.id %>/<%= product.variantId %>" value="Update" class="pbtn update-btn" />
+            </form>
+          </li>
           <% }) %>
         </ul>
         <hr>
