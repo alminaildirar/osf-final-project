@@ -12,11 +12,10 @@
     <% if(typeof successMessages !== undefined){ %>
     <h3 style="color: green;"> <%= successMessages %></h1>
       <% } %>
-      <h1>Wishlist</h1>
       <% if(typeof failMessages !== undefined ){ %>
       <% if( failMessages == "There is no wishlist created for this user" ){ %>
       <div class="cart-alert">
-        <img src="/images/brokenheart.png" alt="">
+        <img class="img-warning" src="/images/brokenheart.png" alt="">
         <h2> <br> There is no product in your wishlist yet.</h2>
       </div>
       <% } %>
@@ -45,7 +44,7 @@
                 </ul>
               </div>
               <div class="product-act">
-                <a href="/wishlist/removeItem/<%= product.id %>/<%= product.variantId %>/?_method=DELETE" class="btn-delete"><i class="fas fa-times"></i></a>
+                <a href="/wishlist/removeItem/<%= product.id %>/<%= product.variantId %>/?_method=DELETE" class="pbtn delete-btn"><i class="fas fa-times"></i></a>
                 <div class="quantity">
                   <label for="quantity">Quantity: </label><input type="number" name="quantity" min="1" id="quantity" value="<%= product.quantity %>">
                 </div>

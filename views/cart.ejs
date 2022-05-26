@@ -12,11 +12,10 @@
     <% if(typeof successMessages !== undefined){ %>
     <h3 style="color: green;"> <%= successMessages %></h1>
       <% } %>
-      <h1>Cart</h1>
       <% if(typeof failMessages !== undefined ){ %>
       <% if( failMessages == "There is no cart created for this user" ){ %>
       <div class="cart-alert">
-        <img src="/images/empty.png" alt="">
+        <img class="img-warning" src="/images/empty.png" alt="">
         <h2> <br> There is no product in your cart yet.</h2>
       </div>
       <% } %>
@@ -42,17 +41,14 @@
                   <li><b>Subtotal</b>: $<%= (product.price) * (product.quantity) %></li>
                 </ul>
               </div>
-              <div class="product-act">
-                <a href="/cart/removeItem/<%= product.id %>/<%= product.variantId %>/?_method=DELETE" class="btn-delete"><i class="fas fa-times"></i></a>
-                <form action="" method="post">
-                  <div class="quantity">
-                    <label for="quantity">Quantity: </label><input type="number" name="quantity" min="1" id="quantity" value="<%= product.quantity %>">
-                  </div>
-                  <input type="submit" formaction="/cart/changeItemQuantity/<%= product.id %>/<%= product.variantId %>" value="Update" class="pbtn update-btn" />
-                </form>
-              </div>
+              <form class="product-act" method="post">
+                <a href="/cart/removeItem/<%= product.id %>/<%= product.variantId %>/?_method=DELETE" class="pbtn delete-btn"><i class="fas fa-times"></i></a>
+                <div class="quantity">
+                  <label for="quantity">Quantity: </label><input type="number" name="quantity" min="1" id="quantity" value="<%= product.quantity %>">
+                </div>
+                <input type="submit" formaction="/cart/changeItemQuantity/<%= product.id %>/<%= product.variantId %>" value="Update" class="pbtn update-btn" />
+              </form>
             </li>
-
           </form>
           <% }) %>
         </ul>

@@ -1,9 +1,21 @@
 <%- include('partials/_header')-%>
-  <div class="breadcrumb container">
-    <a href="" class="breadcrumb-item">Home</a>
+<div class="breadcrumb container">
+  <a href="" class="breadcrumb-item">Home</a>
+</div>
+<% if(typeof error !== 'undefined'){ %>
+<div class="container" style="text-align: center;">
+  <br>
+  <h2 style="text-align:center; color: rgb(128, 0, 0);"><%= error %></h3>
+    <img class="img-warning" src="/images/alert.png" alt="">
+    <br><img style="height: 300px;" class="img-warning" src="/images/emp.png" alt="">
+</div>
+<% }else{ %>
+<div class="container">
+  <div class="img-container">
+    <img class="img-container" src="/images/home.jpg" alt="">
   </div>
-  <% if(typeof error !== 'undefined'){ %>
-    <br>
-    <h2 style="text-align:center;"><%= error %></h3>
-  <% } %>
+</div>
+
+<% } %>
+
 <%- include('partials/_footer')-%>

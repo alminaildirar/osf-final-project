@@ -34,6 +34,9 @@ const getParentCategories = async (req, res, next) => {
     const parentCategoryId = req.params.parentCategoryId;
 
     try {
+        if (rootCategory === parentCategoryId) {
+            throw new BadRequestError('Category Not Found.');
+        }
         const roots = await getCategoriesByParentId('root');
         const parentData = await getCategoriesByParentId(parentCategoryId);
         if (!parentData) throw new BadRequestError('Category Not Found.');
