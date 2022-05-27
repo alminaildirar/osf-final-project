@@ -57,6 +57,10 @@ const getSingleProduct = async (req, res, next) => {
         }
 
         const images = getProductImages(product);
+        let orderable = true;
+        if((product.variants).length === 0){
+            orderable = false;
+        }
 
         return res.render('singleProduct', {
             roots,
@@ -65,6 +69,7 @@ const getSingleProduct = async (req, res, next) => {
             primaryCategoryId,
             parentNames,
             images,
+            orderable,
             failMessages,
             successMessages,
         });

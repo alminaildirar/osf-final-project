@@ -37,6 +37,9 @@
       <% if(typeof successMessages !== undefined){ %>
       <h3 style="color: green;"><br> <%= successMessages %></h1>
         <% } %>
+        <% if(!orderable){ %>
+          <h3 style="color: red;"><br>This product is not available right now.</h1>
+         <% } %>
         <h3><%= product.name %></h3>
         <p><%= product.short_description %></p>
         <div class="detail-list">
@@ -60,12 +63,16 @@
           <hr />
           <div class="price">
             <div><b>Price:</b><span><%= product.price %> <%= product.currency %></span></div>
-            <div><label for="quantity">Quantity: </label><input type="number" min="1" name="quantity" id="pcs" value="1"></div>
-          </div>
-          <div class="btn-group">
-            <input type="submit" formaction="/wishlist/addItem/<%= primaryCategoryId %>/<%= product.id %>" value="Add to wishlist" class="btn-card btn-wish" />
-            <input type="submit" formaction="/cart/addItem/<%= primaryCategoryId %>/<%= product.id %>/product" value="Add To Cart" class="btn-card btn-cart" />
-          </div>
+            <% if(orderable){ %>
+              <div><label for="quantity">Quantity: </label><input type="number" min="1" name="quantity" id="pcs" value="1"></div>
+              <% } %>
+            </div>
+            <% if(orderable){ %>
+            <div class="btn-group">
+              <input type="submit" formaction="/wishlist/addItem/<%= primaryCategoryId %>/<%= product.id %>" value="Add To Wishlist" class="btn-card btn-wish" />
+              <input type="submit" formaction="/cart/addItem/<%= primaryCategoryId %>/<%= product.id %>/product" value="Add To Cart" class="btn-card btn-cart" />
+            </div>
+            <% } %>
         </form>
   </div>
 

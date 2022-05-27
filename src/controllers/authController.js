@@ -26,7 +26,14 @@ const register = async (req, res, next) => {
         if (responseData.error) {
             throw new RegisterError(responseData.error);
         } else {
-            console.log(responseData.user);
+            res.cookie(
+                'successMessages',
+                'Your account has been created successfully. Please login to gain access.',
+                {
+                    httpOnly: true,
+                    maxAge: 900000,
+                }
+            );
             res.redirect('/login');
         }
     } catch (error) {

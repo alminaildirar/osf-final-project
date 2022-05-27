@@ -5,14 +5,15 @@ const getIndexPage = async (req, res, next) => {
         const roots = await getCategoriesByParentId('root');
         res.status(200).render('index', { roots });
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
 };
 
 const getLoginPage = async (req, res, next) => {
+    const successMessages = req.cookies.successMessages;
     try {
         if (userIN) return res.redirect('/');
-        res.status(200).render('login');
+        res.status(200).render('login', { successMessages });
     } catch (error) {
         next(error);
     }
