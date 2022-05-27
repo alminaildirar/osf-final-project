@@ -31,15 +31,15 @@
             <li>
               <div class="product-img"><img src="/images/<%= product.image %>" alt=""></div>
               <div class="product-detail">
-                <h4><%= product.name %></h4>
+                <a href="/products/<%= product.primaryCategoryId %>/<%= product.id %>"><h4><%= product.name %></h4></a>
                 <hr>
                 <ul class="product-property">
                   <% let variant = Object.entries(product.variant) %>
                   <% variant.forEach((item) => { %>
                   <li><b style="text-transform: capitalize ;"><%= item[0] %></b>: <%= item[1] %></li>
-                  <input class="none" type="text" name="<%= item[0] %>" id="<%= item[0] %>" value="<%= item[1] %>">
                   <% }) %>
-
+                  <input class="none" type="text" name="variantId" id="variantId" value="<%= product.variantId %>">
+                  <li><b>Product ID:</b>: <%= product.variantId %></li>
                   <li><b>Unit Price</b>: $<%= product.price %></li>
                   <li><b>Subtotal</b>: $<%= (product.price) * (product.quantity) %></li>
                 </ul>

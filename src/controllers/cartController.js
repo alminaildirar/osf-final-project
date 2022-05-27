@@ -4,7 +4,6 @@ const {
     getCartRequest,
     getCartProducts,
     addItemToCartRequest,
-    getCartProductsVariantIds,
     removeItemFromCartRequest,
     changeItemQuantityCartRequest,
     calculateTotalPriceOfCart
@@ -13,7 +12,7 @@ const {
     findOrderableProductId,
     removeItemFromWishlistRequest,
 } = require('../services/WishlistService');
-const { getProductById } = require('../services/ProductService');
+
 
 const getCart = async (req, res, next) => {
     const failMessages = req.cookies.failMessages;
@@ -53,16 +52,16 @@ const addItemToCart = async (req, res, next) => {
 
     try {
         let path;
-        src === 'product'
-            ? (path = `/products/${primaryCategoryId}/${productId}`)
-            : (path = '/wishlist');
+        let variantId;
 
         if (src === 'wish') {
-            const product = await getProductById(productId);
-            variant = getCartProductsVariantIds(product, variant);
+            variantId = variant.variantId;
+            path = '/wishlist';
+        } else {
+            variantId = await findOrderableProductId(variant, productId);
+            path = `/products/${primaryCategoryId}/${productId}`;
         }
 
-        const variantId = await findOrderableProductId(variant, productId);
         if (!variantId) {
             res.cookie(
                 'failMessages',

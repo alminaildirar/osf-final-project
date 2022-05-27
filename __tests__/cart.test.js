@@ -71,13 +71,6 @@ describe('CART SERVICES', () => {
         expect(response.length).toBeGreaterThanOrEqual(1);
         done();
     });
-    it("Should get cart items variant's name", async (done) => {
-        const variant = { color: 'Beige', size: '40' };
-        const exp = { color: 'E3J', size: '40' };
-        const res = getCartProductsVariantIds(testData.product[0], variant);
-        expect(res).toEqual(exp);
-        done();
-    });
     it('Should add item to cart', async (done) => {
         const data = {
             secretKey: config.api.key,
@@ -96,17 +89,6 @@ describe('CART SERVICES', () => {
             variantId: '883360544373',
         };
         const res = await removeItemFromCartRequest(token, data);
-        expect(res).toBeDefined();
-        done();
-    });
-    it('Should make change quantity of cart item request', async (done) => {
-        const data = {
-            secretKey: config.api.key,
-            productId: '21736758',
-            variantId: '883360541280',
-            quantity: '2',
-        };
-        const res = await changeItemQuantityCartRequest(token, data);
         expect(res).toBeDefined();
         done();
     });

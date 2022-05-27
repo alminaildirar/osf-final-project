@@ -27,6 +27,7 @@ const getCartProducts = async (products) => {
         cartItem.image = product.image_groups[0].images[0].link;
         cartItem.price = product.price;
         cartItem.id = product.id;
+        cartItem.primaryCategoryId = product.primary_category_id;
         cartItem.variantId = item.variant.product_id;
         cartItem.variant = getCartProductsVariantNames(
             product,
@@ -47,22 +48,6 @@ const getCartProductsVariantNames = (product, variant) => {
             for (let values of item.values) {
                 if (values.value === variant[item.id]) {
                     variantName[item.id] = values.name;
-                }
-            }
-        }
-    }
-
-    return variantName;
-};
-
-const getCartProductsVariantIds = (product, variant) => {
-    let variantName = {};
-    const variants = Object.keys(variant);
-    for (let item of product.variation_attributes) {
-        if (variants.includes(item.id)) {
-            for (let values of item.values) {
-                if (values.name === variant[item.id]) {
-                    variantName[item.id] = values.value;
                 }
             }
         }
@@ -141,7 +126,6 @@ const calculateTotalPriceOfCart = (products) => {
 module.exports = {
     getCartRequest,
     getCartProducts,
-    getCartProductsVariantIds,
     addItemToCartRequest,
     removeItemFromCartRequest,
     changeItemQuantityCartRequest,
