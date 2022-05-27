@@ -10,7 +10,7 @@ async function getData(url, data = {}) {
 
         return response.data;
     } catch (error) {
-        next(error);
+        return error.response.data;
     }
 }
 

@@ -33,6 +33,14 @@
             <% } %>
           </ul>
         </div>
+        <form action="/search" method="post" class="search">
+          <input type="text" name="search" placeholder="Search for products" required>
+          <button type="submit" class="btn btn-search">
+            <span class="material-symbols-outlined">
+              search
+            </span>
+          </button>
+        </form>
         <div class="menu">
           <ul>
             <% if(userIN) { %>

@@ -9,6 +9,7 @@ module.exports = (app) => {
     app.use('/wishlist', require('./wishlistRoute'));
     app.use('/cart', require('./cartRoute'));
     app.use('/order', require('./orderRoute'));
+    app.use('/search', require('./searchRoute'));
     app.use(errorHandler);
     app.use(errorMiddleware);
 };

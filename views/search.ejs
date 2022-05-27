@@ -1,0 +1,32 @@
+<%- include('partials/_header')-%>
+<div class="breadcrumb container">
+  <a href="/" class="breadcrumb-item">Home</a>
+  <a href="" class="breadcrumb-item">Search</a>
+</div>
+<div class="container" style="text-align: center;">
+  <% if(filteredProducts.length > 0){ %>
+  <h2 style="color: green;"><%= resultCount %> results found for "<%= searchedProduct %>". </h1>
+    <% } %>
+    <% if(filteredProducts.length == 0){ %>
+    <h2 style="color: rgb(128, 0, 0);">No results found for '<%= searchedProduct %>'.</h1>
+      <img class="img-warning" src="/images/alert.png" alt="">
+      <br><img style="height: 300px;" class="img-warning" src="/images/emp.png" alt="">
+      <% } %>
+</div>
+
+<div class="container pro-list">
+  <% filteredProducts.forEach(product => {%>
+  <div class="product">
+    <div class="img"><img src="/images/<%= product.image %>" alt="" /></div>
+    <div class="pro-content">
+      <h4><%= product.name %></h4>
+      <p><%= product.desc %></p>
+      <div class="pro-footer">
+        <div class="price"><b>Price:</b> $<%= product.price %></div>
+        <a href="/products/<%= product.parent %>/<%= product.id %>" class="btn-card">Buy Now! <i class="fas fa-angle-double-right arrow"></i></a>
+      </div>
+    </div>
+  </div>
+  <% }) %>
+</div>
+<%- include('partials/_footer')-%>
