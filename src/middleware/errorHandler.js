@@ -1,30 +1,28 @@
-const BadRequestError = require('../exceptions/BadRequestError');
-const RegisterError = require('../exceptions/RegisterError');
-const LoginError = require('../exceptions/LoginError');
-const UnauthorizedError = require('../exceptions/UnauthorizedError');
+const Sentry = require('@sentry/node');
 
 const errorHandler = (error, req, res, next) => {
-    if (error instanceof BadRequestError) {
-        return res
-            .status(error.statusCode)
-            .render('index', { error: error.message });
+    let path;
+    const status = error.statusCode || 500;
+    let message = error.message;
+    switch (error.constructor.name) {
+        case 'LoginError':
+            path = 'login';
+            break;
+        case 'RegisterError':
+            path = 'register';
+            break;
+        case 'BadRequestError':
+            path = 'index';
+            break;
+        case 'UnauthorizedError':
+            path = 'login';
+            break;
+        default:
+            path = 'index';
+            Sentry.captureException(error);
+            message = 'Something went wrong.';
     }
-    if (error instanceof RegisterError) {
-        return res
-            .status(error.statusCode)
-            .render('register', { error: error.message });
-    }
-    if (error instanceof LoginError) {
-        return res
-            .status(error.statusCode)
-            .render('login', { error: error.message });
-    }
-    if (error instanceof UnauthorizedError) {
-        return res
-            .status(error.statusCode)
-            .render('login', { error: error.message });
-    }
-    return res.status(500).render('index', { error: 'Something went wrong' });
+    res.status(status).render(`${path}`, { error: message });
 };
 
 module.exports = { errorHandler };

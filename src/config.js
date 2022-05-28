@@ -9,6 +9,9 @@ const config = {
         url: String(process.env.BASE_URL),
         key: String(process.env.SECRET_KEY),
     },
+    sentry: {
+        dsn: process.env.SENTRY_DSN
+      }
 };
 
 module.exports = config;
