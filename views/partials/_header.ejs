@@ -34,7 +34,7 @@
           </ul>
         </div>
         <form action="/search" method="post" class="search">
-          <input type="text" name="search" placeholder="Search for products" required>
+          <input type="text" name="search" placeholder="Search for products" required pattern=".*\S+.*" title="This field is required">
           <button type="submit" class="btn btn-search">
             <span class="material-symbols-outlined">
               search
