@@ -37,6 +37,13 @@ const createOrder = async (req, res, next) => {
     const address = req.body.address;
 
     try {
+        if(!(address.trim())){
+            res.cookie('failMessages', "Address is required", {
+                httpOnly: true,
+                maxAge: 900000,
+            });
+            return res.status(404).redirect(`/cart`);
+        }
         const cart = await getCartRequest(token);
         if (!cart.items) throw new BadRequestError();
         const paymentId = generatePaymentId();
