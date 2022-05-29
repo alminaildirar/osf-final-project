@@ -3,6 +3,8 @@ const dotenv = require('dotenv');
 const config = require('./config');
 const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
+const { errorMiddleware } = require('./middleware/error');
+const { errorHandler } = require('./middleware/errorHandler');
 const Sentry = require('@sentry/node');
 const Tracing = require('@sentry/tracing');
 
@@ -59,5 +61,10 @@ app.get('/favicon.ico', (req, res) => res.status(204));
 
 //----------Routes---------------
 require('./routes/server')(app);
+
+//-------Error Middlewares---------
+app.use(Sentry.Handlers.errorHandler());
+app.use(errorHandler);
+app.use(errorMiddleware);
 
 module.exports = app;
