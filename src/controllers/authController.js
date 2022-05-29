@@ -7,6 +7,7 @@ const { getCategoriesByParentId } = require('../services/CategoryService');
 const { wishProductsLength } = require('../services/WishlistService');
 const { cartProductsLength } = require('../services/CartService');
 
+//-----------------Register -----------------------
 const register = async (req, res, next) => {
     const { name, password, email } = req.body;
 
@@ -41,6 +42,7 @@ const register = async (req, res, next) => {
     }
 };
 
+//------------Login----------------------
 const login = async (req, res, next) => {
     const { email, password } = req.body;
     try {
@@ -72,11 +74,11 @@ const login = async (req, res, next) => {
             res.redirect('/');
         }
     } catch (error) {
-        console.log(error);
         next(error);
     }
 };
 
+//-------------Logout--------------------
 const logout = (req, res) => {
     try {
         if (!req.cookies.user || !req.cookies.token) {
@@ -90,6 +92,7 @@ const logout = (req, res) => {
     }
 };
 
+//----------------Get Profile Page------------------
 const getProfile = async (req, res, next) => {
     const token = req.cookies.token;
     const user = req.cookies.user;

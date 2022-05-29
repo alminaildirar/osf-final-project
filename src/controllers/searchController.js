@@ -4,6 +4,7 @@ const {
 const { getProductsByCategoryId } = require('../services/ProductService');
 const { getCategoriesByParentId } = require('../services/CategoryService');
 
+//----------------Search -------------------
 const search = async (req, res, next) => {
     const searchedProduct = req.body.search;
     try {

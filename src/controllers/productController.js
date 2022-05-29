@@ -9,6 +9,7 @@ const {
 const { findParentName } = require('../helpers/findParentName');
 const BadRequestError = require('../exceptions/BadRequestError');
 
+//----------------Get Products---------------------------
 const getProducts = async (req, res, next) => {
     const primaryCategoryId = req.params.primaryCategoryId;
 
@@ -31,10 +32,11 @@ const getProducts = async (req, res, next) => {
         }
         return res.render('products', { roots, products, parentNames });
     } catch (error) {
-        console.log(error);
+        next(error);
     }
 };
 
+//---------------Get Single Product----------------------------
 const getSingleProduct = async (req, res, next) => {
     const failMessages = req.cookies.failMessages;
     const successMessages = req.cookies.successMessages;
@@ -58,7 +60,7 @@ const getSingleProduct = async (req, res, next) => {
 
         const images = getProductImages(product);
         let orderable = true;
-        if((product.variants).length === 0){
+        if (product.variants.length === 0) {
             orderable = false;
         }
 

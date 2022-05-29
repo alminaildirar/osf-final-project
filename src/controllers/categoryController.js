@@ -50,7 +50,7 @@ const getParentCategories = async (req, res, next) => {
             parentNames,
         });
     } catch (error) {
-        console.log(error);
+        next(error);
     }
 };
 

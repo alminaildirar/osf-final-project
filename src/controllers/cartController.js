@@ -6,14 +6,14 @@ const {
     addItemToCartRequest,
     removeItemFromCartRequest,
     changeItemQuantityCartRequest,
-    calculateTotalPriceOfCart
+    calculateTotalPriceOfCart,
 } = require('../services/CartService');
 const {
     findOrderableProductId,
     removeItemFromWishlistRequest,
 } = require('../services/WishlistService');
 
-
+//-------------Get Cart Items-------------------
 const getCart = async (req, res, next) => {
     const failMessages = req.cookies.failMessages;
     const successMessages = req.cookies.successMessages;
@@ -29,20 +29,21 @@ const getCart = async (req, res, next) => {
             });
         }
         const cartProducts = await getCartProducts(response.items);
-        const totalPrice = calculateTotalPriceOfCart(cartProducts)
+        const totalPrice = calculateTotalPriceOfCart(cartProducts);
 
         res.status(200).render('cart', {
             roots,
             cartProducts,
             failMessages,
             successMessages,
-            totalPrice
+            totalPrice,
         });
     } catch (error) {
         next(error);
     }
 };
 
+//-----------------Add Items To Cart---------------------
 const addItemToCart = async (req, res, next) => {
     const token = req.cookies.token;
     const { productId, primaryCategoryId, src } = req.params;
@@ -54,6 +55,7 @@ const addItemToCart = async (req, res, next) => {
         let path;
         let variantId;
 
+        //Check where the request from?
         if (src === 'wish') {
             variantId = variant.variantId;
             path = '/wishlist';
@@ -90,6 +92,7 @@ const addItemToCart = async (req, res, next) => {
             return res.status(404).redirect(`${path}`);
         }
 
+        //Remove item from wishlist if the item is added to cart
         await removeItemFromWishlistRequest(token, data);
 
         res.cookie(
@@ -106,6 +109,7 @@ const addItemToCart = async (req, res, next) => {
     }
 };
 
+//----------------Remove Item From Cart---------------
 const removeItemFromCart = async (req, res, next) => {
     const token = req.cookies.token;
     const { productId, variantId } = req.params;
@@ -140,6 +144,7 @@ const removeItemFromCart = async (req, res, next) => {
     }
 };
 
+//--------------Change Item Quantity Cart---------------
 const changeItemQuantityCart = async (req, res, next) => {
     const token = req.cookies.token;
     const { productId, variantId } = req.params;

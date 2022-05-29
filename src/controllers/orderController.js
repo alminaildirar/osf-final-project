@@ -8,6 +8,7 @@ const {
 const { getCategoriesByParentId } = require('../services/CategoryService');
 const config = require('../config');
 
+//---------------Get Orders------------------
 const getOrder = async (req, res, next) => {
     const failMessages = req.cookies.failMessages;
     const token = req.cookies.token;
@@ -32,13 +33,15 @@ const getOrder = async (req, res, next) => {
     }
 };
 
+//---------------Create Order-------------------
 const createOrder = async (req, res, next) => {
     const token = req.cookies.token;
     const address = req.body.address;
 
     try {
-        if(!(address.trim())){
-            res.cookie('failMessages', "Address is required", {
+        //Address is required!!
+        if (!address.trim()) {
+            res.cookie('failMessages', 'Address is required', {
                 httpOnly: true,
                 maxAge: 900000,
             });
