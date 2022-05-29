@@ -2,6 +2,7 @@ const axios = require('axios');
 const config = require('../config');
 const { getProductById } = require('../services/ProductService');
 
+//--------Get Wishlist Request---------------
 const getWishlistRequest = async (token) => {
     try {
         const response = await axios({
@@ -18,6 +19,7 @@ const getWishlistRequest = async (token) => {
     }
 };
 
+//-------Get Wish Products -------------------
 const getWishProducts = async (products) => {
     let wish = [];
     for (const item of products) {
@@ -40,6 +42,7 @@ const getWishProducts = async (products) => {
     return wish;
 };
 
+//-----Get Wish Products Variant Names--------------------
 const getWishProductsVariantNames = (product, variant) => {
     let variantName = {};
     const variants = Object.keys(variant);
@@ -56,6 +59,7 @@ const getWishProductsVariantNames = (product, variant) => {
     return variantName;
 };
 
+//--------Add Item To Wishlist Request-------------------
 const addItemToWishlistRequest = async (token, data) => {
     try {
         const response = await axios({
@@ -73,12 +77,14 @@ const addItemToWishlistRequest = async (token, data) => {
     }
 };
 
+//------------Get Products Orderable Variants ----------------
 const getProductsOrderableVariants = async (productId) => {
     const product = await getProductById(productId);
     const variants = product.variants;
     return variants;
 };
 
+//----------Find Orderable Product Id-------------------------
 const findOrderableProductId = async (variant, productId) => {
     const orderableVariants = await getProductsOrderableVariants(productId);
 
@@ -90,6 +96,7 @@ const findOrderableProductId = async (variant, productId) => {
     return false;
 };
 
+//------Remove Item From Wishlist Request--------------------
 const removeItemFromWishlistRequest = async (token, data) => {
     try {
         const response = await axios({
@@ -107,6 +114,7 @@ const removeItemFromWishlistRequest = async (token, data) => {
     }
 };
 
+//------Change Item Quantity Request --------------------
 const changeItemQuantityRequest = async (token, data) => {
     try {
         const response = await axios({
@@ -124,6 +132,7 @@ const changeItemQuantityRequest = async (token, data) => {
     }
 };
 
+//----Get Wishlist Products Length (for profile length)
 const wishProductsLength = async (token) => {
     const wishlist = await getWishlistRequest(token);
     if (wishlist.error) {
@@ -141,5 +150,5 @@ module.exports = {
     changeItemQuantityRequest,
     wishProductsLength,
     getWishProductsVariantNames,
-    getProductsOrderableVariants
+    getProductsOrderableVariants,
 };

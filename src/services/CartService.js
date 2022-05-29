@@ -2,6 +2,7 @@ const axios = require('axios');
 const config = require('../config');
 const { getProductById } = require('../services/ProductService');
 
+//--------Get Cart Request To API----------
 const getCartRequest = async (token) => {
     try {
         const response = await axios({
@@ -18,6 +19,7 @@ const getCartRequest = async (token) => {
     }
 };
 
+//---------Get Cart Products ---------------
 const getCartProducts = async (products) => {
     let cart = [];
     for (const item of products) {
@@ -40,6 +42,7 @@ const getCartProducts = async (products) => {
     return cart;
 };
 
+//--------Get Cart Products Variants Names--------------
 const getCartProductsVariantNames = (product, variant) => {
     let variantName = {};
     const variants = Object.keys(variant);
@@ -56,6 +59,7 @@ const getCartProductsVariantNames = (product, variant) => {
     return variantName;
 };
 
+//-------- Add Item To Cart Request ----------------
 const addItemToCartRequest = async (token, data) => {
     try {
         const response = await axios({
@@ -73,6 +77,7 @@ const addItemToCartRequest = async (token, data) => {
     }
 };
 
+//-------- Remove Item From Cart Request --------------
 const removeItemFromCartRequest = async (token, data) => {
     try {
         const response = await axios({
@@ -90,6 +95,7 @@ const removeItemFromCartRequest = async (token, data) => {
     }
 };
 
+//---------- Change Item Quantity Cart Request -----------
 const changeItemQuantityCartRequest = async (token, data) => {
     try {
         const response = await axios({
@@ -107,6 +113,7 @@ const changeItemQuantityCartRequest = async (token, data) => {
     }
 };
 
+// ----------- Cart Products Length For Profile Page -------
 const cartProductsLength = async (token) => {
     const cart = await getCartRequest(token);
     if (cart.error) {
@@ -118,10 +125,10 @@ const cartProductsLength = async (token) => {
 const calculateTotalPriceOfCart = (products) => {
     let totalprice = 0;
     products.forEach((product) => {
-       totalprice += ((product.price) * (product.quantity))
-    })
-   return totalprice;
-}
+        totalprice += product.price * product.quantity;
+    });
+    return totalprice;
+};
 
 module.exports = {
     getCartRequest,
@@ -130,5 +137,5 @@ module.exports = {
     removeItemFromCartRequest,
     changeItemQuantityCartRequest,
     cartProductsLength,
-    calculateTotalPriceOfCart
+    calculateTotalPriceOfCart,
 };

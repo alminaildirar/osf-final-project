@@ -1,6 +1,6 @@
 const { getAllCategories } = require('./CategoryService');
 
-//For fining subcategories(categories that are not parent category have products)
+//For finding subcategories(categories that are not parent category have products)
 const findCategoriesWhichHaveProducts = async () => {
     const categories = (await getAllCategories()).map((category) => {
         return { category: category.id, parent: category.parent_category_id };

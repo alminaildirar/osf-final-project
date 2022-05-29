@@ -2,6 +2,7 @@ const { customAlphabet } = require('nanoid');
 const axios = require('axios');
 const config = require('../config');
 
+//--------------Get Order Request ------------
 const getOrderRequest = async (token) => {
     try {
         const response = await axios({
@@ -18,6 +19,7 @@ const getOrderRequest = async (token) => {
     }
 };
 
+//------------Create Order Request To API------
 const createOrderRequest = async (data, token) => {
     try {
         const response = await axios({
@@ -35,6 +37,7 @@ const createOrderRequest = async (data, token) => {
     }
 };
 
+//----------Gnerate Unıque Payment Id---------
 const generatePaymentId = () => {
     const nanoid = customAlphabet('1234567890', 10);
     const paymentId = 'PI' + nanoid();

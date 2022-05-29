@@ -2,12 +2,14 @@ const { getData } = require('./DataService');
 const config = require('../config');
 const { getAllCategories } = require('./CategoryService');
 
+//------------Get Products By Category Id----------------
 const getProductsByCategoryId = async (primaryCategoryId) => {
     return await getData(
         `${config.api.url}products/product_search?primary_category_id=${primaryCategoryId}&secretKey=${config.api.key}`
     );
 };
 
+//-------------Get Product By Id-------------------------
 const getProductById = async (id) => {
     return (
         await getData(
@@ -16,6 +18,7 @@ const getProductById = async (id) => {
     )[0];
 };
 
+//--This is used the check incorrect request by url ------
 const findProductsParentCategory = async (categoryId) => {
     const category = (await getAllCategories()).filter((data) => {
         if (data.id == categoryId) return true;
@@ -25,6 +28,7 @@ const findProductsParentCategory = async (categoryId) => {
     return result;
 };
 
+//---Some categories do not have parent info, i check them for breadcrumb----
 const checkProductHasSubCategory = (
     parentNames,
     primaryCategoryId,
@@ -42,6 +46,7 @@ const checkProductHasSubCategory = (
     return parentNames;
 };
 
+//To get large images fr product detail page
 const getProductImages = (product) => {
     return product.image_groups
         .filter((data) => {

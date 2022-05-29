@@ -1,5 +1,6 @@
 const axios = require('axios');
 
+//----------Get Data API Call----------
 async function getData(url, data = {}) {
     try {
         const response = await axios({
@@ -14,6 +15,7 @@ async function getData(url, data = {}) {
     }
 }
 
+// -------- Post Data API Call ----------
 async function authPost(url, data) {
     try {
         const response = await axios({

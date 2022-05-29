@@ -10,6 +10,7 @@ const {
     changeItemQuantityRequest,
 } = require('../services/WishlistService');
 
+//---------------Get Wishlist -------------------
 const getWishlist = async (req, res, next) => {
     const failMessages = req.cookies.failMessages;
     const successMessages = req.cookies.successMessages;
@@ -36,6 +37,7 @@ const getWishlist = async (req, res, next) => {
     }
 };
 
+//----------Add Item To Wishlist -----------------
 const addItemToWishlist = async (req, res, next) => {
     const token = req.cookies.token;
     const { productId, primaryCategoryId } = req.params;
@@ -91,6 +93,7 @@ const addItemToWishlist = async (req, res, next) => {
     }
 };
 
+//--------Remove Item From Wishlist -----------------
 const removeItemFromWishlist = async (req, res, next) => {
     const token = req.cookies.token;
     const { productId, variantId } = req.params;
@@ -125,6 +128,7 @@ const removeItemFromWishlist = async (req, res, next) => {
     }
 };
 
+//--------Change Item Quantity ---------------------
 const changeItemQuantity = async (req, res, next) => {
     const token = req.cookies.token;
     const { productId, variantId } = req.params;
