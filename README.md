@@ -36,6 +36,12 @@ npm install
 npm start
 ```
 
+For run test (before testing it would be better if sentry is removed);
+
+ ```makefile
+npm test
+```
+
 ## 📷 Screenshots
 
 <img width="907" alt="1" src="https://user-images.githubusercontent.com/55828986/170892970-022024ab-b986-40c3-bbad-d8fcbded2310.png">
