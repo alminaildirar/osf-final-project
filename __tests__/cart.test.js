@@ -7,7 +7,6 @@ const {
     getCartRequest,
     getCartProducts,
     addItemToCartRequest,
-    getCartProductsVariantIds,
     removeItemFromCartRequest,
     changeItemQuantityCartRequest,
     cartProductsLength,

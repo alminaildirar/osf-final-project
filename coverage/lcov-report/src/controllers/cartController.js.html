@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/controllers/cartController.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\index.html">All files</a> / <a href="index.html">src/controllers</a> cartController.js
+    </h1>
+    <div class='clearfix'>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188</td><td class="line-coverage quiet"><span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const config = require('../config');
+const { getCategoriesByParentId } = require('../services/CategoryService');
+const {
+    getCartRequest,
+    getCartProducts,
+    addItemToCartRequest,
+    removeItemFromCartRequest,
+    changeItemQuantityCartRequest,
+    calculateTotalPriceOfCart,
+} = require('../services/CartService');
+const {
+    findOrderableProductId,
+    removeItemFromWishlistRequest,
+} = require('../services/WishlistService');
+&nbsp;
+//-------------Get Cart Items-------------------
+const getCart = async (req, res, next) =&gt; {
+    const failMessages = req.cookies.failMessages;
+    const successMessages = req.cookies.successMessages;
+    const token = req.cookies.token;
+    try {
+        const roots = await getCategoriesByParentId('root');
+        const response = await getCartRequest(token);
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (response.error) {
+<span class="cstat-no" title="statement not covered" >            return res.status(400).render('cart', {</span>
+                roots,
+                failMessages: response.error,
+                successMessages,
+            });
+        }
+        const cartProducts = await getCartProducts(response.items);
+        const totalPrice = calculateTotalPriceOfCart(cartProducts);
+&nbsp;
+        res.status(200).render('cart', {
+            roots,
+            cartProducts,
+            failMessages,
+            successMessages,
+            totalPrice,
+        });
+    } catch (error) {
+<span class="cstat-no" title="statement not covered" >        next(error);</span>
+    }
+};
+&nbsp;
+//-----------------Add Items To Cart---------------------
+const addItemToCart = <span class="fstat-no" title="function not covered" >as</span>ync (req, res, next) =&gt; {
+    const token = <span class="cstat-no" title="statement not covered" >req.cookies.token;</span>
+    const { productId, primaryCategoryId, src } = <span class="cstat-no" title="statement not covered" >req.params;</span>
+    const quantity = <span class="cstat-no" title="statement not covered" >req.body.quantity;</span>
+    let variant = <span class="cstat-no" title="statement not covered" >req.body;</span>
+<span class="cstat-no" title="statement not covered" >    delete variant.quantity;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    try {</span>
+        let path;
+        let variantId;
+&nbsp;
+        //Check where the request from?
+<span class="cstat-no" title="statement not covered" >        if (src === 'wish') {</span>
+<span class="cstat-no" title="statement not covered" >            variantId = variant.variantId;</span>
+<span class="cstat-no" title="statement not covered" >            path = '/wishlist';</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >            variantId = await findOrderableProductId(variant, productId);</span>
+<span class="cstat-no" title="statement not covered" >            path = `/products/${primaryCategoryId}/${productId}`;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (!variantId) {</span>
+<span class="cstat-no" title="statement not covered" >            res.cookie(</span>
+                'failMessages',
+                'This product does not have this variant',
+                {
+                    httpOnly: true,
+                    maxAge: 900000,
+                }
+            );
+<span class="cstat-no" title="statement not covered" >            return res.status(404).redirect(`${path}`);</span>
+        }
+&nbsp;
+        const data = <span class="cstat-no" title="statement not covered" >{</span>
+            secretKey: config.api.key,
+            productId,
+            variantId,
+            quantity,
+        };
+&nbsp;
+        const response = <span class="cstat-no" title="statement not covered" >await addItemToCartRequest(token, data);</span>
+<span class="cstat-no" title="statement not covered" >        if (response.error) {</span>
+<span class="cstat-no" title="statement not covered" >            res.cookie('failMessages', response.error, {</span>
+                httpOnly: true,
+                maxAge: 900000,
+            });
+<span class="cstat-no" title="statement not covered" >            return res.status(404).redirect(`${path}`);</span>
+        }
+&nbsp;
+        //Remove item from wishlist if the item is added to cart
+<span class="cstat-no" title="statement not covered" >        await removeItemFromWishlistRequest(token, data);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        res.cookie(</span>
+            'successMessages',
+            'This item added to your cart successfully :)',
+            {
+                httpOnly: true,
+                maxAge: 900000,
+            }
+        );
+<span class="cstat-no" title="statement not covered" >        res.status(200).redirect(`${path}`);</span>
+    } catch (error) {
+<span class="cstat-no" title="statement not covered" >        next(error);</span>
+    }
+};
+&nbsp;
+//----------------Remove Item From Cart---------------
+const removeItemFromCart = async (req, res, next) =&gt; {
+    const token = req.cookies.token;
+    const { productId, variantId } = req.params;
+    try {
+        const data = {
+            secretKey: config.api.key,
+            productId,
+            variantId,
+        };
+&nbsp;
+        const response = await removeItemFromCartRequest(token, data);
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (response.error) {
+            res.cookie('failMessages', response.error, {
+                httpOnly: true,
+                maxAge: 900000,
+            });
+            return res.status(404).redirect('/cart');
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        res.cookie(</span>
+            'successMessages',
+            'The item is removed from your cart successfully.',
+            {
+                httpOnly: true,
+                maxAge: 900000,
+            }
+        );
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return res.status(200).redirect('/cart');</span>
+    } catch (error) {
+<span class="cstat-no" title="statement not covered" >        next(error);</span>
+    }
+};
+&nbsp;
+//--------------Change Item Quantity Cart---------------
+const changeItemQuantityCart = async (req, res, next) =&gt; {
+    const token = req.cookies.token;
+    const { productId, variantId } = req.params;
+    const quantity = req.body.quantity;
+    try {
+        const data = {
+            secretKey: config.api.key,
+            productId,
+            variantId,
+            quantity,
+        };
+&nbsp;
+        const response = await changeItemQuantityCartRequest(token, data);
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (response.error) {
+            res.cookie('failMessages', response.error, {
+                httpOnly: true,
+                maxAge: 900000,
+            });
+            return res.status(404).redirect('/cart');
+        }
+<span class="cstat-no" title="statement not covered" >        res.cookie(</span>
+            'successMessages',
+            'Item quantity is changed successfully.',
+            {
+                httpOnly: true,
+                maxAge: 900000,
+            }
+        );
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return res.status(200).redirect('/cart');</span>
+    } catch (error) {
+<span class="cstat-no" title="statement not covered" >        next(error);</span>
+    }
+};
+module.exports = {
+    getCart,
+    addItemToCart,
+    removeItemFromCart,
+    changeItemQuantityCart,
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon May 30 2022 00:31:02 GMT+0300 (GMT+03:00)
+</div>
+</div>
+<script src="..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\sorter.js"></script>
+</body>
+</html>

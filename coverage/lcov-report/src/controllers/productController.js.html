@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/controllers/productController.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\index.html">All files</a> / <a href="index.html">src/controllers</a> productController.js
+    </h1>
+    <div class='clearfix'>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84</td><td class="line-coverage quiet"><span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const { getCategoriesByParentId } = require('../services/CategoryService');
+const {
+    getProductsByCategoryId,
+    getProductById,
+    getProductImages,
+    findProductsParentCategory,
+    checkProductHasSubCategory,
+} = require('../services/ProductService');
+const { findParentName } = require('../helpers/findParentName');
+const BadRequestError = require('../exceptions/BadRequestError');
+&nbsp;
+//----------------Get Products---------------------------
+const getProducts = async (req, res, next) =&gt; {
+    const primaryCategoryId = req.params.primaryCategoryId;
+&nbsp;
+    try {
+        const roots = await getCategoriesByParentId('root');
+        const parentCategory = await findProductsParentCategory(
+            primaryCategoryId
+        );
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (!parentCategory) {
+<span class="cstat-no" title="statement not covered" >            throw new BadRequestError('Category Not Found.');</span>
+        }
+        const products = await getProductsByCategoryId(primaryCategoryId);
+        let parentNames = findParentName(primaryCategoryId);
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (!parentNames.sub) {
+<span class="cstat-no" title="statement not covered" >            parentNames = checkProductHasSubCategory(</span>
+                parentNames,
+                primaryCategoryId,
+                parentCategory
+            );
+        }
+        return res.render('products', { roots, products, parentNames });
+    } catch (error) {
+<span class="cstat-no" title="statement not covered" >        next(error);</span>
+    }
+};
+&nbsp;
+//---------------Get Single Product----------------------------
+const getSingleProduct = async (req, res, next) =&gt; {
+    const failMessages = req.cookies.failMessages;
+    const successMessages = req.cookies.successMessages;
+    const id = req.params.id;
+    const primaryCategoryId = req.params.primaryCategoryId;
+&nbsp;
+    try {
+        const roots = await getCategoriesByParentId('root');
+        const product = await getProductById(id);
+        const parentCategory = await findProductsParentCategory(
+            primaryCategoryId
+        );
+        let parentNames = findParentName(primaryCategoryId);
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (!parentNames.sub) {
+<span class="cstat-no" title="statement not covered" >            parentNames = checkProductHasSubCategory(</span>
+                parentNames,
+                primaryCategoryId,
+                parentCategory
+            );
+        }
+&nbsp;
+        const images = getProductImages(product);
+        let orderable = true;
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (product.variants.length === 0) {
+<span class="cstat-no" title="statement not covered" >            orderable = false;</span>
+        }
+&nbsp;
+        return res.render('singleProduct', {
+            roots,
+            product,
+            parentCategory,
+            primaryCategoryId,
+            parentNames,
+            images,
+            orderable,
+            failMessages,
+            successMessages,
+        });
+    } catch (error) {
+<span class="cstat-no" title="statement not covered" >        next(error);</span>
+    }
+};
+&nbsp;
+module.exports = { getProducts, getSingleProduct };
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon May 30 2022 00:31:02 GMT+0300 (GMT+03:00)
+</div>
+</div>
+<script src="..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\sorter.js"></script>
+</body>
+</html>
