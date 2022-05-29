@@ -1,9 +1,13 @@
 <%- include('partials/_header')-%>
+<!-- BREADCRUMB START -->
 <div class="breadcrumb container">
   <a href="/" class="breadcrumb-item">Home</a>
   <a href="" class="breadcrumb-item">Orders</a>
 </div>
+<!-- BREADCRUMB END -->
+
 <div class="order-page container">
+  <!-- ERROR START -->
   <% if(typeof failMessages !== undefined ){ %>
   <% if( failMessages !== "There are no orders for this user" ){ %>
   <h3 style="color: red;"><%= failMessages %></h1>
@@ -16,7 +20,10 @@
     </div>
     <% } %>
     <% } %>
+    <!-- ERROR END -->
     <% if( failMessages !== "There are no orders for this user" ){ %>
+
+    <!-- ORDER LIST START -->
     <% orders.forEach((order) => { %>
     <div class="order">
       <h2>Order</h2>
@@ -33,6 +40,7 @@
         <tbody>
           <% let total = 0 ;%>
           <% let i=1 ;%>
+          <!-- ORDER ITEMS START -->
           <% order.items.forEach((item) => { %>
           <tr>
             <th><%= i %></th>
@@ -44,8 +52,10 @@
           <% total += (item.quantity)*(item.variant.price)  %>
           <% i++; %>
           <% }) %>
+          <!-- ORDER ITEMS END -->
         </tbody>
       </table>
+      <!-- ORDER SECTION START -->
       <div class="order-detail">
         <div class="order-total">
           <div><b>Total:</b> <span>$ <%= total %></span></div>
@@ -55,8 +65,10 @@
           <div><b>Shipping Address:</b> <%= order.address %></div>
         </div>
       </div>
+      <!-- ORDER SECTION END -->
     </div>
     <% }) %>
     <% } %>
+    <!-- ORDER LIST END -->
 </div>
 <%- include('partials/_footer')-%>

@@ -1,15 +1,19 @@
 <%- include('partials/_header')-%>
-
+<!-- BREADCRUMB START -->
   <div class="breadcrumb container">
     <a href="/" class="breadcrumb-item">Home</a>
     <a href="" class="breadcrumb-item"><%= rootData.name %></a>
   </div>
+  <!-- BREADCRUMB END -->
   <div class="page-title">
+    <!-- ROOT DATA INFO START -->
     <div class="container">
       <h1><%= rootData.name %></h1>
       <p><%= rootData.page_description %></p>
     </div>
+    <!-- ROOT DATA INFO END -->
   </div>
+  <!-- SUBCATEGORIES START -->
   <div class="container cat-list">
     <% for(let i=0; i<parentData.length; i++) { %>
     <div class="cat-card">
@@ -23,4 +27,5 @@
     <% } %>
 
   </div>
+    <!-- SUBCATEGORIES END -->
   <%- include('partials/_footer')-%>

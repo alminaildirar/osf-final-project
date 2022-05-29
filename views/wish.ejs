@@ -1,9 +1,12 @@
 <%- include('partials/_header')-%>
+<!-- BREADCRUMB START -->
 <div class="breadcrumb container">
   <a href="/" class="breadcrumb-item">Home</a>
   <a href="" class="breadcrumb-item">Wishlist</a>
 </div>
+<!-- BREADCRUMB END -->
 <div class="cart-page container">
+  <!-- MESSAGES START -->
   <% if(typeof failMessages !== undefined ){ %>
   <% if( failMessages !== "There is no wishlist created for this user" ){ %>
   <h3 style="color: red;"><%= failMessages %></h1>
@@ -21,17 +24,20 @@
       </div>
       <% } %>
       <% } %>
-
+      <!-- MESSAGES END -->
       <% if( failMessages !== "There is no wishlist created for this user" ){ %>
       <% if(wishProducts){ %>
       <div class="cart">
+        <!-- WISHLIST PRODUCTS START -->
         <ul class="product-list">
           <% wishProducts.forEach((product) => { %>
           <form action="" method="post">
             <li>
               <div class="product-img"><img src="/images/<%= product.image %>" alt=""></div>
               <div class="product-detail">
-                <a href="/products/<%= product.primaryCategoryId %>/<%= product.id %>"><h4><%= product.name %></h4></a>
+                <a href="/products/<%= product.primaryCategoryId %>/<%= product.id %>">
+                  <h4><%= product.name %></h4>
+                </a>
                 <hr>
                 <ul class="product-property">
                   <% let variant = Object.entries(product.variant) %>
@@ -58,6 +64,7 @@
           <% } %>
           <% } %>
         </ul>
+        <!-- WISHLIST PRODUCTS END -->
       </div>
 </div>
 </div>

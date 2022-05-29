@@ -1,30 +1,33 @@
 <%- include('partials/_header')-%>
+<!-- BREADCRUMB START -->
+<div class="breadcrumb container">
+  <a href="/" class="breadcrumb-item">Home</a>
+  <a href="/categories/<%= parentNames.root %>" class="breadcrumb-item"><%= parentNames.root %></a>
+  <a href="/categories/<%= parentNames.root %>/<%= parentNames.root %>-<%= parentNames.parent %>" class="breadcrumb-item"><%= parentNames.parent %></a>
+  <a href="" class="breadcrumb-item"><%= parentNames.subName %></a>
+</div>
+<!-- BREADCRUMB END -->
 
-  <div class="breadcrumb container">
-    <a href="/" class="breadcrumb-item">Home</a>
-    <a href="/categories/<%= parentNames.root %>" class="breadcrumb-item"><%= parentNames.root %></a>
-    <a href="/categories/<%= parentNames.root %>/<%= parentNames.root %>-<%= parentNames.parent %>" class="breadcrumb-item"><%= parentNames.parent %></a>
-    <a href="" class="breadcrumb-item"><%= parentNames.subName %></a>
-  </div>
-  
-  <% if(typeof products !== 'undefined'){ %>
-  <div class="container pro-list">
-    <% for(let i=0; i<products.length; i++) { %>
-    <div class="product">
-      <div class="img"><img src="/images/<%= products[i].image_groups[2].images[0].link %>" alt=""></div>
-      <div class="pro-content">
-        <h4><%= products[i].name %></h4>
-        <p><%= products[i].short_description %></p>
-        <div class="pro-footer">
-          <div class="price"><b>Price:</b> <%= products[i].price %><span> <%= products[i].currency %></span></div>
-          <a href="/products/<%= products[i].primary_category_id %>/<%= products[i].id %>" class="btn-card">More Info <i class="fas fa-angle-double-right arrow"></i></a>
-        </div>
+<!-- PRODUCTS START -->
+<% if(typeof products !== 'undefined'){ %>
+<div class="container pro-list">
+  <% for(let i=0; i<products.length; i++) { %>
+  <div class="product">
+    <div class="img"><img src="/images/<%= products[i].image_groups[2].images[0].link %>" alt=""></div>
+    <div class="pro-content">
+      <h4><%= products[i].name %></h4>
+      <p><%= products[i].short_description %></p>
+      <div class="pro-footer">
+        <div class="price"><b>Price:</b> <%= products[i].price %><span> <%= products[i].currency %></span></div>
+        <a href="/products/<%= products[i].primary_category_id %>/<%= products[i].id %>" class="btn-card">More Info <i class="fas fa-angle-double-right arrow"></i></a>
       </div>
     </div>
-    <% } %>
   </div>
-  <% }else{ %>
-    <br>
-    <h2 style="text-align:center;">There are no products in this category.</h3>
+  <% } %>
+</div>
+<!-- PRODUCTS END -->
+<% }else{ %>
+<br>
+<h2 style="text-align:center;">There are no products in this category.</h3>
   <% } %>
   <%- include('partials/_footer')-%>

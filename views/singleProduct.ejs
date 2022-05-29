@@ -1,5 +1,5 @@
 <%- include('partials/_header')-%>
-
+<!-- BREADCRUMB START -->
 <div class="breadcrumb container">
   <a href="/" class="breadcrumb-item"> Home </a>
   <a href="/categories/<%= parentNames.root %>" class="breadcrumb-item">
@@ -9,6 +9,7 @@
   <a href="/products/<%= primaryCategoryId %> " class="breadcrumb-item"><%= parentNames.subName %></a>
   <a href="" class="breadcrumb-item"><%= product.name %></a>
 </div>
+<!-- BREADCRUMB END -->
 <div class="detail container">
   <div class="detail-img">
     <!-- <img src="product.jpeg" alt=""> -->
@@ -31,6 +32,7 @@
   </div>
 
   <div class="detail-content">
+    <!-- MESSAGES START -->
     <% if(typeof failMessages !== undefined){ %>
     <h3 style="color: red;"><br><%= failMessages %></h1>
       <% } %>
@@ -38,42 +40,49 @@
       <h3 style="color: green;"><br> <%= successMessages %></h1>
         <% } %>
         <% if(!orderable){ %>
-          <h3 style="color: red;"><br>This product is not available right now.</h1>
-         <% } %>
-        <h3><%= product.name %></h3>
-        <p><%= product.short_description %></p>
-        <div class="detail-list">
-          <h4>Features</h4>
-          <%- product.long_description %>
-        </div>
+        <h3 style="color: red;"><br>This product is not available right now.</h1>
+          <% } %>
+          <!-- MESSAGES END -->
 
-        <form action="" method="post">
-          <% (product.variation_attributes).forEach((variation) => { %>
-          <div class="variants">
-            <h4><%= variation.name %></h4>
-            <div class="radio-grp">
-              <% variation.values.forEach((value) => { %>
-              <div class="radio-btn">
-                <input type="radio" id="<%= value.name %>" name="<%= variation.id %>" value="<%= value.value %>" /><label for="<%= value.name %>"><%= value.name %></label>
-              </div>
-              <% }) %>
-            </div>
+          <!-- PRODUCT DETAIL START -->
+          <h3><%= product.name %></h3>
+          <p><%= product.short_description %></p>
+          <div class="detail-list">
+            <h4>Features</h4>
+            <%- product.long_description %>
           </div>
-          <% }) %>
-          <hr />
-          <div class="price">
-            <div><b>Price:</b><span><%= product.price %> <%= product.currency %></span></div>
-            <% if(orderable){ %>
+          <!-- PRODUCT VARIANTS START -->
+          <form action="" method="post">
+            <% (product.variation_attributes).forEach((variation) => { %>
+            <div class="variants">
+              <h4><%= variation.name %></h4>
+              <div class="radio-grp">
+                <% variation.values.forEach((value) => { %>
+                <div class="radio-btn">
+                  <input type="radio" id="<%= value.name %>" name="<%= variation.id %>" value="<%= value.value %>" /><label for="<%= value.name %>"><%= value.name %></label>
+                </div>
+                <% }) %>
+              </div>
+            </div>
+            <% }) %>
+            <hr />
+            <!-- PRODUCT VARIANTS END -->
+            <div class="price">
+              <div><b>Price:</b><span><%= product.price %> <%= product.currency %></span></div>
+              <% if(orderable){ %>
               <div><label for="quantity">Quantity: </label><input type="number" min="1" name="quantity" id="pcs" value="1"></div>
               <% } %>
             </div>
+            <!-- WISHLIST AND CART BUTTONS START -->
             <% if(orderable){ %>
             <div class="btn-group">
               <input type="submit" formaction="/wishlist/addItem/<%= primaryCategoryId %>/<%= product.id %>" value="Add To Wishlist" class="btn-card btn-wish" />
               <input type="submit" formaction="/cart/addItem/<%= primaryCategoryId %>/<%= product.id %>/product" value="Add To Cart" class="btn-card btn-cart" />
             </div>
             <% } %>
-        </form>
+            <!-- WISHLIST AND CART BUTTONS END -->
+          </form>
+          <!-- PRODUCT DETAIL END -->
   </div>
 
 </div>

@@ -1,9 +1,12 @@
 <%- include('partials/_header')-%>
+<!-- BREADCRUMB START -->
 <div class="breadcrumb container">
   <a href="/" class="breadcrumb-item">Home</a>
   <a href="" class="breadcrumb-item">Cart</a>
 </div>
+<!-- BREADCRUMB END -->
 <div class="cart-page container">
+  <!-- MESSAGES START -->
   <% if(typeof failMessages !== undefined ){ %>
   <% if( failMessages !== "There is no cart created for this user" ){ %>
   <h3 style="color: red;"><%= failMessages %></h1>
@@ -14,16 +17,17 @@
       <% } %>
       <% if(typeof failMessages !== undefined ){ %>
       <% if( failMessages == "There is no cart created for this user" ){ %>
-        <div class="img-container" style="text-align: center;">
-          <img class="img-warning" src="/images/empty.png" alt="">
-          <h2> <br> There is no product in your cart yet. </h2>
-          <img  style="height: 300px;"class="img-warning" src="/images/emp.png" alt="">
-        </div>
+      <div class="img-container" style="text-align: center;">
+        <img class="img-warning" src="/images/empty.png" alt="">
+        <h2> <br> There is no product in your cart yet. </h2>
+        <img style="height: 300px;" class="img-warning" src="/images/emp.png" alt="">
+      </div>
       <% } %>
       <% } %>
-
+      <!-- MESSAGES END -->
       <% if( failMessages !== "There is no cart created for this user" ){ %>
       <div class="cart">
+        <!-- CART PRODUCTS START -->
         <ul class="product-list">
           <% cartProducts.forEach((product) => { %>
           <li>
@@ -51,7 +55,9 @@
           </li>
           <% }) %>
         </ul>
+        <!-- CART PRODUCTS END -->
         <hr>
+        <!-- CREATE ORDER START -->
         <form action="/order/createOrder" method="post">
           <div class="get-order">
             <div class="order-left">
@@ -65,6 +71,7 @@
             </div>
           </div>
         </form>
+        <!-- CREATE ORDER END -->
       </div>
       <% } %>
 </div>

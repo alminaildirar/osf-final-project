@@ -1,8 +1,12 @@
 <%- include('partials/_header')-%>
+<!-- BREADCRUMB START -->
 <div class="breadcrumb container">
   <a href="/" class="breadcrumb-item">Home</a>
   <a href="" class="breadcrumb-item">Search</a>
 </div>
+<!-- BREADCRUMB END -->
+
+<!-- SEARCH RESULT START -->
 <div class="container" style="text-align: center;">
   <% if(filteredProducts.length > 0){ %>
   <h2 style="color: green;"><%= resultCount %> results found for "<%= searchedProduct %>". </h1>
@@ -13,7 +17,9 @@
       <br><img style="height: 300px;" class="img-warning" src="/images/emp.png" alt="">
       <% } %>
 </div>
+<!-- SEARCH RESULT END -->
 
+<!-- FILTERED PRODUCTS START -->
 <div class="container pro-list">
   <% filteredProducts.forEach(product => {%>
   <div class="product">
@@ -29,4 +35,5 @@
   </div>
   <% }) %>
 </div>
+<!-- FILTERED PRODUCTS END -->
 <%- include('partials/_footer')-%>
